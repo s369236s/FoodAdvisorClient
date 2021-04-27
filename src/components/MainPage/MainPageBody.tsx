@@ -9,7 +9,7 @@ export const MainPageBody: React.FC = ({}) => {
   const loginSubmit = () => {
     console.log(213);
     axios
-      .get("http://111.185.146.121:80/api/test.php")
+      .get("https://111.185.146.121:80/api/test.php")
       .then((res) => console.log(res));
   };
   return (
