@@ -1,0 +1,97 @@
+:root {
+  font-size: 16px;
+  font-family: Helvetica, 微軟正黑體;
+  --bg-primary: #ffffff;
+  --bg-secondary: #819ad1;
+  --bg-third: #000000;
+  --bg-third-hover: #000000c4;
+}
+
+.nav-container {
+  z-index: 100;
+  display: flex;
+  flex-flow: row nowrap;
+  width: 100%;
+  padding: 0.5rem;
+  box-shadow: 0 0 4px #000000;
+  background-color: var(--bg-primary);
+  position: fixed;
+  justify-content: space-around;
+}
+
+.nav-left-container > *:not(h1) {
+  margin: 0 0 0 1rem;
+}
+
+.nav-button {
+  display: flex;
+  border-radius: 1rem;
+  border: none;
+  width: 4rem;
+  font-family: 微軟正黑體;
+  font-size: 1rem;
+  font-weight: 900;
+  cursor: pointer;
+  margin-left: 1rem;
+  height: 36px;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-button > * {
+  font-size: 1rem;
+}
+
+.nav-review-button {
+  width: 5rem;
+  color: black;
+  border: 2px transparent solid;
+}
+
+.nav-review-button:hover {
+  border: 2px black solid;
+  transition: border 0.2s ease;
+}
+
+.nav-review-button > svg {
+  margin-right: 0.3rem;
+  margin-top: 0.1rem;
+  align-self: center;
+}
+
+.nav-login-button {
+  color: white;
+  background-color: var(--bg-third);
+}
+.nav-login-button:hover {
+  background-color: var(--bg-third-hover);
+  transition: background-color 0.2s ease;
+}
+
+.nav-search-bar {
+  display: flex;
+  position: relative;
+}
+
+input.nav-search {
+  min-width: 10rem;
+  width: 100%;
+  font-size: 1.25rem;
+  padding: 0.4rem 0.5rem 0.25rem 2.5rem;
+  border-radius: 0.5rem;
+  outline: none;
+  border: 2px #dfdfdf solid;
+}
+
+.nav-search-icon {
+  width: 1.25rem;
+  position: absolute;
+  top: 50%;
+  transform: translate(60%, -50%);
+}
+
+@media only screen and (max-width: 736px) {
+  .nav-search-bar {
+    display: none;
+  }
+}

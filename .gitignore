@@ -1,0 +1,3 @@
+node_modules
+//會忽略掉所有備份 例如 meadowlark.js~
+*~

@@ -1,0 +1,35 @@
+{
+  "name": "foodadvisorclient",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack --config webpack/webpack.config.js",
+    "dev": "webpack serve --mode=development --config webpack/webpack.config.js --port 5000 --open"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.13.16",
+    "@babel/preset-env": "^7.13.15",
+    "@babel/preset-react": "^7.13.13",
+    "@babel/preset-typescript": "^7.13.0",
+    "@types/react": "^17.0.3",
+    "@types/react-dom": "^17.0.3",
+    "@types/react-router-dom": "^5.1.7",
+    "babel-loader": "^8.2.2",
+    "css-loader": "^5.2.4",
+    "html-webpack-plugin": "^5.3.1",
+    "style-loader": "^2.0.0",
+    "typescript": "^4.2.4",
+    "webpack": "^5.35.1",
+    "webpack-cli": "^4.6.0",
+    "webpack-dev-server": "^3.11.2"
+  },
+  "dependencies": {
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-router-dom": "^5.2.0"
+  }
+}

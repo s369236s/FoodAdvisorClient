@@ -1,0 +1,123 @@
+:root {
+  font-size: 16px;
+  font-family: Helvetica, 微軟正黑體;
+  --bg-primary: #ffffff;
+  --bg-secondary: #819ad1;
+  --bg-third: #000000;
+  --bg-third-hover: #000000c4;
+}
+
+.main-page-body-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 3.5rem;
+  width: 100%;
+}
+
+.main-canvas-image-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  position: relative;
+  min-height: 450px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: #e0e0e0;
+  box-sizing: border-box;
+}
+
+img.main-canvas-image {
+  position: absolute;
+  bottom: 0;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  padding: 0;
+  margin: 0;
+}
+.main-canvas-input-container {
+  width: calc(60%);
+  z-index: 2;
+}
+input.main-canvas-input {
+  width: calc(100% - 3rem);
+  font-size: 1.5rem;
+  height: 50px;
+  padding-left: 3rem;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.main-canvas-input-container > svg {
+  width: 1.25rem;
+  position: absolute;
+  top: 50%;
+  transform: translate(80%, -50%);
+}
+
+.intro-featuer-container {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.featuer-grid {
+  border-radius: 2px;
+  border: 1px #bebebe solid;
+  text-align: center;
+  width: 43ch;
+  height: 15ch;
+  margin-top: 3rem;
+}
+
+.featuer-grid > img {
+  position: absolute;
+  left: 50%;
+  right: 0;
+  top: 0px;
+  transform: translate(-50%, -50%);
+}
+
+.featuer-grid > article > h2 {
+  color: var(--bg-secondary);
+}
+
+.featuer-grid-1 > img {
+  width: 8rem;
+}
+.featuer-grid-2 > img {
+  width: 5rem;
+}
+.main-page-restaurant-grids-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.main-page-body-container > a {
+  margin-top: 3rem;
+  color: black;
+  font-size: 2rem;
+}
+.main-page-body-container > a:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+@media only screen and (max-width: 420px) {
+  .main-canvas-input-container {
+    display: none;
+  }
+}
+@media only screen and (max-width: 1300px) {
+  .main-page-restaurant-grids-container > .restaurant-grid {
+    margin: 3rem;
+  }
+}
