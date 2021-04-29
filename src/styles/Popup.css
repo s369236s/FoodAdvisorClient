@@ -1,7 +1,7 @@
 .popup-content {
   border-radius: 4px;
   max-width: 40ch;
-  min-width: 25ch;
+  min-width: 30ch;
 }
 .login-popup-container {
   display: flex;
