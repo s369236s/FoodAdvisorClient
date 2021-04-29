@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { SearchBar } from "./Search-Bar/SearchBar";
 import "../../styles/Nav.css";
 import { Link } from "react-router-dom";
+import { LoginPopup } from "../../pages/LoginPopup";
+import Popup from "reactjs-popup";
 
 interface Props {}
 
@@ -27,9 +29,16 @@ export const Nav: React.FC<Props> = ({}) => {
           </svg>
           <p>評論</p>
         </Link>
-        <Link className="nav-login-button nav-button" to="/Login">
-          <p>登入</p>
-        </Link>
+        <Popup
+          trigger={
+            <button className="nav-login-button nav-button">
+              <p>登入</p>
+            </button>
+          }
+          modal
+        >
+          {(closePopup: () => void) => <LoginPopup closePopup={closePopup} />}
+        </Popup>
       </div>
     </nav>
   );
