@@ -12,11 +12,7 @@ export const LoginForm: React.FC<Props> = ({ switchSubmit }) => {
       .post(
         "http://localhost:80/FoodAdvisorServer/test.php",
         { email, password },
-        {
-          headers: {
-            "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
-          },
-        }
+        {}
       )
       .then((res) => console.log(res));
     e.preventDefault();
