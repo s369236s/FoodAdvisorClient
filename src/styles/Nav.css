@@ -137,7 +137,6 @@ input.nav-search {
 }
 .nav-dropmenu-icon {
   padding: 0.3rem;
-  border-radius: 100%;
 }
 .nav-dropmenu-link > *:not(img) {
   padding: 0.2rem;
