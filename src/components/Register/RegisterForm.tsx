@@ -3,6 +3,9 @@ interface Props {
   switchSubmit: (e: React.FormEvent<HTMLButtonElement>) => void;
 }
 export const RegisterForm: React.FC<Props> = ({ switchSubmit }) => {
+  const RegisterSubmit = (e: React.FormEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+  };
   return (
     <form className="login-popup-login-form">
       <section className="login-popup-input-container">
@@ -17,7 +20,10 @@ export const RegisterForm: React.FC<Props> = ({ switchSubmit }) => {
         <h5>密碼</h5>
         <input type="text" placeholder="密碼" />
       </section>
-      <button className="login-popup-button login-popup-login-submit">
+      <button
+        className="login-popup-button login-popup-login-submit"
+        onClick={RegisterSubmit}
+      >
         <h5>成為會員</h5>
       </button>
       <button
