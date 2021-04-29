@@ -28,13 +28,14 @@ export const LoginPopup: React.FC<Props> = ({ closePopup }) => {
       </svg>
       <div className="login-popup-child-container">
         <img src="logo.png" alt="" />
-        <h1>{isSwitchRegister ? "成為我們的會員吧" : "歡迎回來"}</h1>
+        <h2>{isSwitchRegister ? "成為我們的會員吧" : "歡迎回來"}</h2>
         {isSwitchRegister ? (
           <RegisterForm switchSubmit={switchSubmit} />
         ) : (
           <LoginForm switchSubmit={switchSubmit} />
         )}
       </div>
+      <div style={{ height: "1rem" }}></div>
     </div>
   );
 };

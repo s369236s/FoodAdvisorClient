@@ -32,7 +32,7 @@
   width: 4rem;
 }
 
-.login-popup-child-container > h1 {
+.login-popup-child-container > h2 {
   margin-top: 1rem;
 }
 
@@ -99,5 +99,8 @@
 @media only screen and (max-width: 500px) {
   .login-popup-child-container > img {
     align-self: center;
+  }
+  .login-popup-child-container > h2 {
+    font-size: 1.2rem;
   }
 }
