@@ -10,7 +10,7 @@ export const LoginForm: React.FC<Props> = ({ switchSubmit }) => {
     // console.log(email, password);
     axios
       .post(
-        "http://localhost:80/api/test.php",
+        "http://localhost:80/FoodAdvisorServer/test.php",
         { email, password },
         {
           headers: {

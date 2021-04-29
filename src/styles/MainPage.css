@@ -118,6 +118,8 @@ input.main-canvas-input {
 }
 @media only screen and (max-width: 1300px) {
   .main-page-restaurant-grids-container > .restaurant-grid {
-    margin: 3rem;
+    margin-top: 5rem;
+    width: 25ch;
+    height: 25ch;
   }
 }

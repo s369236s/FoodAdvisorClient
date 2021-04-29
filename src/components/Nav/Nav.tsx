@@ -4,10 +4,13 @@ import "../../styles/Nav.css";
 import { Link } from "react-router-dom";
 import { LoginPopup } from "../../pages/LoginPopup";
 import Popup from "reactjs-popup";
+import { DropDown } from "./DropDown/DropDown";
 
 interface Props {}
 
 export const Nav: React.FC<Props> = ({}) => {
+  const [toggle, setToggle] = useState(false);
+
   return (
     <nav className="nav-container">
       <div className="nav-left-container center">
@@ -15,7 +18,7 @@ export const Nav: React.FC<Props> = ({}) => {
         <h1>FoodAdvisor</h1>
         <SearchBar />
       </div>
-      <div className="nav-right-container center">
+      <div className="nav-right-container">
         <Link className="nav-review-button nav-button" to="/">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -39,6 +42,23 @@ export const Nav: React.FC<Props> = ({}) => {
         >
           {(closePopup: () => void) => <LoginPopup closePopup={closePopup} />}
         </Popup>
+      </div>
+      <div className="nav-right-container-mobile">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="32"
+          height="32"
+          fill="currentColor"
+          className="nav-right-dropdown-icon"
+          viewBox="0 0 16 16"
+          onClick={() => setToggle(!toggle)}
+        >
+          <path
+            fillRule="evenodd"
+            d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"
+          />
+        </svg>
+        {toggle ? <DropDown setToggle={setToggle} toggle={toggle} /> : <></>}
       </div>
     </nav>
   );
