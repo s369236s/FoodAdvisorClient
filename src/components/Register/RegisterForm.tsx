@@ -7,15 +7,18 @@ export const RegisterForm: React.FC<Props> = ({ switchSubmit }) => {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const RegisterSubmit = (e: React.FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
     axios
-      .post("http://localhost:80/FoodAdvisorServer/test.php", {
+      .post("http://localhost:80/FoodAdvisorServer/user/register.php", {
         email,
-        password,
         username,
+        password,
+        confirmPassword,
       })
-      .then((res) => console.log(res));
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
   };
   return (
     <form className="login-popup-login-form">
@@ -44,6 +47,15 @@ export const RegisterForm: React.FC<Props> = ({ switchSubmit }) => {
           placeholder="密碼"
           name="password"
           onChange={(e) => setPassword(e.target.value)}
+        />
+      </section>
+      <section className="login-popup-input-container">
+        <h5>確認密碼</h5>
+        <input
+          type="text"
+          placeholder="確認密碼"
+          name="confirmPassword"
+          onChange={(e) => setConfirmPassword(e.target.value)}
         />
       </section>
       <button
