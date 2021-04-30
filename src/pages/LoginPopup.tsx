@@ -61,11 +61,11 @@ export const LoginPopup: React.FC<Props> = ({ closePopup }) => {
           <RegisterForm
             switchSubmit={switchSubmit}
             setIsSwitchRegister={setIsSwitchRegister}
-            setRegisterSuccessFlashMsg={setRegisterSuccessFlash}
-            registerSuccessFlashMsg={registerSuccessFlash}
+            setRegisterSuccessFlash={setRegisterSuccessFlash}
+            registerSuccessFlash={registerSuccessFlash}
           />
         ) : (
-          <LoginForm switchSubmit={switchSubmit} />
+          <LoginForm switchSubmit={switchSubmit} closePopup={closePopup} />
         )}
       </div>
       <div style={{ height: "1rem" }}></div>

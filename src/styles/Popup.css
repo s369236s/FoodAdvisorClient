@@ -43,6 +43,7 @@
 .login-popup-input-container {
   display: flex;
   flex-direction: column;
+  position: relative;
   margin-top: 1rem;
 }
 .login-popup-input-container > h5 {
@@ -128,6 +129,42 @@
   padding: 0.2rem;
 }
 
+.login-input-flash {
+  z-index: 100;
+  display: flex;
+  position: absolute;
+  align-items: center;
+  top: 15%;
+  left: 50%;
+  transform: translate(-32.5%, -50%);
+}
+
+.login-input-flash > h5 {
+  margin: 0;
+}
+.login-input-vaild-icon {
+  fill: #ff7575;
+}
+.login-input-flash-msg {
+  font-size: 14px;
+  width: 6rem;
+  background-color: #ff545431;
+  padding: 0.3rem;
+  border-radius: 4px;
+  margin-left: 0.4rem;
+}
+.login-input-flash-close {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  margin: 0.5rem;
+  align-self: flex-end;
+  left: 80%;
+}
+.login-input-flash-close:hover {
+  cursor: pointer;
+  fill: rgb(109, 109, 109);
+}
 @media only screen and (max-width: 500px) {
   .login-popup-child-container > img {
     align-self: center;

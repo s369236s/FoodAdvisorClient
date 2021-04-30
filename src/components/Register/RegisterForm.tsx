@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useRef, useState } from "react";
+import { InputFlash } from "../Login/Flash/InputFlash";
 interface FlashProps {
   status: string;
   msg: string;
@@ -7,21 +8,23 @@ interface FlashProps {
 interface Props {
   switchSubmit: (e: React.FormEvent<HTMLButtonElement>) => void;
   setIsSwitchRegister: React.Dispatch<React.SetStateAction<boolean>>;
-  setRegisterSuccessFlashMsg: React.Dispatch<
-    React.SetStateAction<FlashProps[]>
-  >;
-  registerSuccessFlashMsg: FlashProps[];
+  setRegisterSuccessFlash: React.Dispatch<React.SetStateAction<FlashProps[]>>;
+  registerSuccessFlash: FlashProps[];
 }
 export const RegisterForm: React.FC<Props> = ({
   switchSubmit,
   setIsSwitchRegister,
-  registerSuccessFlashMsg,
-  setRegisterSuccessFlashMsg: setRegisterFlashMsg,
+  registerSuccessFlash: registerSuccessFlashMsg,
+  setRegisterSuccessFlash: setRegisterFlashMsg,
 }) => {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [emailError, setEmailError] = useState("");
+  const [usernameError, setUsernameError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+  const [confirmPasswordError, setConfirmPasswordError] = useState("");
   const RegisterSubmit = (e: React.FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
     axios
@@ -42,15 +45,28 @@ export const RegisterForm: React.FC<Props> = ({
               ...[],
             ]);
         } else {
-          if (
-            !registerSuccessFlashMsg.find((flash) => flash.msg === "註冊失敗!")
-          )
-            setRegisterFlashMsg([
-              { status: "fail", msg: "註冊失敗!" },
-              ...registerSuccessFlashMsg,
-            ]);
+          console.log(res.data.valid);
+          if (res.data.valid.find((valid: any) => valid === "信箱?")) {
+            setEmailError("信箱?");
+          } else if (
+            res.data.valid.find((valid: any) => valid === "信箱重複")
+          ) {
+            setEmailError("信箱重複");
+          } else {
+          }
+          if (res.data.valid.find((valid: any) => valid === "暱稱?")) {
+            setUsernameError("暱稱?");
+          } else {
+          }
+          if (res.data.valid.find((valid: any) => valid === "密碼?")) {
+            setPasswordError("密碼?");
+          } else {
+          }
+          if (res.data.valid.find((valid: any) => valid === "密碼?")) {
+            setConfirmPasswordError("重複密碼?");
+          } else {
+          }
         }
-        console.log(res.data);
       })
       .catch((err) => console.log(err));
   };
@@ -65,6 +81,11 @@ export const RegisterForm: React.FC<Props> = ({
           name="email"
           onChange={(e) => setEmail(e.target.value)}
         />
+        {emailError === "" ? (
+          <></>
+        ) : (
+          <InputFlash setFlashMsg={setEmailError} flashMsg={emailError} />
+        )}
       </section>
       <section className="login-popup-input-container">
         <h5>會員暱稱</h5>
@@ -74,6 +95,11 @@ export const RegisterForm: React.FC<Props> = ({
           name="username"
           onChange={(e) => setUsername(e.target.value)}
         />
+        {usernameError === "" ? (
+          <></>
+        ) : (
+          <InputFlash setFlashMsg={setUsernameError} flashMsg={usernameError} />
+        )}
       </section>
       <section className="login-popup-input-container">
         <h5>密碼</h5>
@@ -83,6 +109,11 @@ export const RegisterForm: React.FC<Props> = ({
           name="password"
           onChange={(e) => setPassword(e.target.value)}
         />
+        {passwordError === "" ? (
+          <></>
+        ) : (
+          <InputFlash setFlashMsg={setPasswordError} flashMsg={passwordError} />
+        )}
       </section>
       <section className="login-popup-input-container">
         <h5>確認密碼</h5>
@@ -92,6 +123,14 @@ export const RegisterForm: React.FC<Props> = ({
           name="confirmPassword"
           onChange={(e) => setConfirmPassword(e.target.value)}
         />
+        {confirmPasswordError === "" ? (
+          <></>
+        ) : (
+          <InputFlash
+            setFlashMsg={setConfirmPasswordError}
+            flashMsg={confirmPasswordError}
+          />
+        )}
       </section>
       <button
         className="login-popup-button login-popup-login-submit"
