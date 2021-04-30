@@ -108,6 +108,26 @@
   fill: rgb(109, 109, 109);
 }
 
+.login-popup-flash-container {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.login-popup-flash {
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 10rem;
+  padding: 0.25rem;
+  background-color: #9aff6b;
+}
+.login-popup-flash > h5 {
+  margin: 0;
+  padding: 0.2rem;
+}
+
 @media only screen and (max-width: 500px) {
   .login-popup-child-container > img {
     align-self: center;

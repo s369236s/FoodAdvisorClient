@@ -1,9 +1,23 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
+interface FlashProps {
+  status: string;
+  msg: string;
+}
 interface Props {
   switchSubmit: (e: React.FormEvent<HTMLButtonElement>) => void;
+  setIsSwitchRegister: React.Dispatch<React.SetStateAction<boolean>>;
+  setRegisterSuccessFlashMsg: React.Dispatch<
+    React.SetStateAction<FlashProps[]>
+  >;
+  registerSuccessFlashMsg: FlashProps[];
 }
-export const RegisterForm: React.FC<Props> = ({ switchSubmit }) => {
+export const RegisterForm: React.FC<Props> = ({
+  switchSubmit,
+  setIsSwitchRegister,
+  registerSuccessFlashMsg,
+  setRegisterSuccessFlashMsg: setRegisterFlashMsg,
+}) => {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -17,9 +31,30 @@ export const RegisterForm: React.FC<Props> = ({ switchSubmit }) => {
         password,
         confirmPassword,
       })
-      .then((res) => console.log(res))
+      .then((res) => {
+        if (res.data.ok) {
+          setIsSwitchRegister(false);
+          if (
+            !registerSuccessFlashMsg.find((flash) => flash.msg === "註冊成功!")
+          )
+            setRegisterFlashMsg([
+              { status: "success", msg: "註冊成功!" },
+              ...[],
+            ]);
+        } else {
+          if (
+            !registerSuccessFlashMsg.find((flash) => flash.msg === "註冊失敗!")
+          )
+            setRegisterFlashMsg([
+              { status: "fail", msg: "註冊失敗!" },
+              ...registerSuccessFlashMsg,
+            ]);
+        }
+        console.log(res.data);
+      })
       .catch((err) => console.log(err));
   };
+
   return (
     <form className="login-popup-login-form">
       <section className="login-popup-input-container">

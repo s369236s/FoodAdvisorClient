@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { FormEvent, useState } from "react";
+import React, { useState } from "react";
 interface Props {
   switchSubmit: (e: React.FormEvent<HTMLButtonElement>) => void;
 }
@@ -9,12 +9,11 @@ export const LoginForm: React.FC<Props> = ({ switchSubmit }) => {
   const loginSubmit = (e: React.FormEvent<HTMLButtonElement>) => {
     // console.log(email, password);
     axios
-      .post(
-        "http://localhost:80/FoodAdvisorServer/test.php",
-        { email, password },
-        {}
-      )
-      .then((res) => console.log(res));
+      .post("http://localhost:80/FoodAdvisorServer/test.php", {
+        email,
+        password,
+      })
+      .then((res) => console.log(res.data.ok));
     e.preventDefault();
   };
 

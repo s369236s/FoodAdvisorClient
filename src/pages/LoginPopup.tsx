@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import "reactjs-popup/dist/index.css";
+import { LoginFlash } from "../components/Login/Flash/LoginFlash";
 import { LoginForm } from "../components/Login/LoginForm";
 import { RegisterForm } from "../components/Register/RegisterForm";
 import "../styles/Popup.css";
@@ -7,12 +8,22 @@ interface Props {
   closePopup: () => void;
 }
 
+interface FlashProps {
+  status: string;
+  msg: string;
+}
+
 export const LoginPopup: React.FC<Props> = ({ closePopup }) => {
   const [isSwitchRegister, setIsSwitchRegister] = useState(false);
+  const [registerSuccessFlash, setRegisterSuccessFlash] = useState<
+    FlashProps[]
+  >([]);
   const switchSubmit = (e: React.FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
+    setRegisterSuccessFlash([]);
     setIsSwitchRegister(!isSwitchRegister);
   };
+
   return (
     <div className="login-popup-container">
       <svg
@@ -23,7 +34,10 @@ export const LoginPopup: React.FC<Props> = ({ closePopup }) => {
         className="register-popup-switch-login"
         viewBox="0 0 16 16"
         style={{ display: isSwitchRegister ? "flex" : "none" }}
-        onClick={() => setIsSwitchRegister(false)}
+        onClick={() => {
+          setRegisterSuccessFlash([]);
+          setIsSwitchRegister(false);
+        }}
       >
         <path
           fillRule="evenodd"
@@ -44,12 +58,28 @@ export const LoginPopup: React.FC<Props> = ({ closePopup }) => {
         <img src="logo.png" alt="" />
         <h2>{isSwitchRegister ? "成為我們的會員吧" : "歡迎回來"}</h2>
         {isSwitchRegister ? (
-          <RegisterForm switchSubmit={switchSubmit} />
+          <RegisterForm
+            switchSubmit={switchSubmit}
+            setIsSwitchRegister={setIsSwitchRegister}
+            setRegisterSuccessFlashMsg={setRegisterSuccessFlash}
+            registerSuccessFlashMsg={registerSuccessFlash}
+          />
         ) : (
           <LoginForm switchSubmit={switchSubmit} />
         )}
       </div>
       <div style={{ height: "1rem" }}></div>
+      {registerSuccessFlash.length > 0 ? (
+        registerSuccessFlash.map((flash) => (
+          <LoginFlash
+            key={flash.msg}
+            status={flash.status}
+            flashMsg={flash.msg}
+          />
+        ))
+      ) : (
+        <></>
+      )}
     </div>
   );
 };

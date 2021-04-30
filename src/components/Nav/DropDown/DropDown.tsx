@@ -1,6 +1,4 @@
 import React, { useEffect, useRef } from "react";
-import Popup from "reactjs-popup";
-import { LoginPopup } from "../../../pages/LoginPopup";
 import { DropLink } from "./DropLink";
 
 interface Props {
