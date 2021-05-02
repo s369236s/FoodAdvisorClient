@@ -4,12 +4,18 @@ import { LoginPopup } from "../../../pages/LoginPopup";
 interface Props {
   text: string;
   needPopup: boolean;
+  action?: () => void;
 }
 
-export const DropLink: React.FC<Props> = ({ text, needPopup, children }) => {
+export const DropLink: React.FC<Props> = ({
+  text,
+  needPopup,
+  children,
+  action,
+}) => {
   if (!needPopup)
     return (
-      <div className="nav-dropmenu-link">
+      <div onClick={action} className="nav-dropmenu-link">
         <>{children}</>
         <h3>{text}</h3>
       </div>

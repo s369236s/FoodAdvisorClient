@@ -1,46 +1,64 @@
-import axios from "axios";
-import React, { useState } from "react";
+import axios, { AxiosResponse } from "axios";
+import React, { useEffect, useState } from "react";
+import { PulseLoader } from "react-spinners";
+import { SERVER_API_KEY } from "../../apiKey";
+import { setAccessToken } from "../Token/accessToken";
 import { InputFlash } from "./Flash/InputFlash";
 interface Props {
   switchSubmit: (e: React.FormEvent<HTMLButtonElement>) => void;
   closePopup: () => void;
 }
 export const LoginForm: React.FC<Props> = ({ switchSubmit, closePopup }) => {
+  const [isLoading, setisLoading] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
-  const loginSubmit = (e: React.FormEvent<HTMLButtonElement>) => {
-    // console.log(email, password);
-    axios
-      .post("http://localhost:80/FoodAdvisorServer/user/login.php", {
-        email,
-        password,
-      })
-      .then((res) => {
-        if (!res.data.ok) {
-          if (res.data.valid.find((valid: any) => valid === "信箱?")) {
-            setEmailError("信箱?");
-          } else if (
-            res.data.valid.find((valid: any) => valid === "信箱不存在")
-          ) {
-            setEmailError("信箱不存在");
-          } else {
-          }
-          if (res.data.valid.find((valid: any) => valid === "密碼?")) {
-            setPasswordError("密碼?");
-          } else if (
-            res.data.valid.find((valid: any) => valid === "密碼錯誤")
-          ) {
-            setPasswordError("密碼錯誤");
-          } else {
-          }
-        } else {
-          closePopup();
-        }
-      });
-    e.preventDefault();
+
+  const validation = (res: AxiosResponse<any>) => {
+    setAccessToken("");
+    if (!res.data.ok) {
+      if (res.data.valid.find((valid: any) => valid === "信箱?")) {
+        setEmailError("信箱?");
+      } else {
+        // setEmailError("信箱不存在");
+      }
+      if (res.data.valid.find((valid: any) => valid === "密碼?")) {
+        setPasswordError("密碼?");
+      } else {
+        setPasswordError("密碼錯誤");
+      }
+    } else {
+      window.location.reload();
+      if (res && res.data) {
+        setAccessToken(res.data.accessToken);
+      }
+      closePopup();
+    }
   };
+
+  const loginSubmit = async (e: React.FormEvent<HTMLButtonElement>) => {
+    setisLoading(true);
+    e.preventDefault();
+    await axios
+      .post(
+        `${SERVER_API_KEY}/user/login.php`,
+        {
+          email,
+          password,
+        },
+        { withCredentials: true }
+      )
+      .then((res) => {
+        setisLoading(false);
+        console.log(res.data);
+        validation(res);
+      });
+  };
+
+  useEffect(() => {
+    return () => setisLoading(false); //unmount this component
+  }, []);
 
   return (
     <form className="login-popup-login-form">
@@ -76,7 +94,11 @@ export const LoginForm: React.FC<Props> = ({ switchSubmit, closePopup }) => {
         className="login-popup-button login-popup-login-submit"
         onClick={loginSubmit}
       >
-        <h5>登入</h5>
+        {isLoading ? (
+          <PulseLoader color={"white"} loading={isLoading} size={6} />
+        ) : (
+          <h5>登入</h5>
+        )}
       </button>
       <button
         className="login-popup-button login-popup-switch-to-register"

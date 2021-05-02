@@ -63,6 +63,9 @@
 }
 
 .login-popup-login-submit {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin-top: 2rem;
   color: white;
   background-color: var(--bg-third);
@@ -122,7 +125,7 @@
   align-items: center;
   width: 10rem;
   padding: 0.25rem;
-  background-color: #9aff6b;
+  background-color: #b3ff8f;
 }
 .login-popup-flash > h5 {
   margin: 0;
@@ -131,12 +134,11 @@
 
 .login-input-flash {
   z-index: 100;
-  display: flex;
   position: absolute;
   align-items: center;
   top: 15%;
-  left: 50%;
-  transform: translate(-32.5%, -50%);
+  left: 37.5%;
+  transform: translate(-32.5%, -60%);
 }
 
 .login-input-flash > h5 {
@@ -147,7 +149,7 @@
 }
 .login-input-flash-msg {
   font-size: 14px;
-  width: 6rem;
+  min-width: 6rem;
   background-color: #ff545431;
   padding: 0.3rem;
   border-radius: 4px;
@@ -171,5 +173,16 @@
   }
   .login-popup-child-container > h2 {
     font-size: 1.2rem;
+  }
+}
+@media only screen and (max-width: 660px) {
+  .login-input-flash {
+    min-width: 6rem;
+    z-index: 100;
+    position: absolute;
+    align-items: center;
+    top: 15%;
+    left: 50.5%;
+    transform: translate(-32.5%, -60%);
   }
 }

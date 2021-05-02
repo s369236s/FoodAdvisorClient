@@ -1,5 +1,7 @@
-import axios from "axios";
-import React, { useEffect, useRef, useState } from "react";
+import axios, { AxiosResponse } from "axios";
+import React, { useEffect, useState } from "react";
+import { PulseLoader } from "react-spinners";
+import { SERVER_API_KEY } from "../../apiKey";
 import { InputFlash } from "../Login/Flash/InputFlash";
 interface FlashProps {
   status: string;
@@ -17,6 +19,7 @@ export const RegisterForm: React.FC<Props> = ({
   registerSuccessFlash: registerSuccessFlashMsg,
   setRegisterSuccessFlash: setRegisterFlashMsg,
 }) => {
+  const [isLoading, setIsLoading] = useState(false);
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -25,51 +28,51 @@ export const RegisterForm: React.FC<Props> = ({
   const [usernameError, setUsernameError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [confirmPasswordError, setConfirmPasswordError] = useState("");
-  const RegisterSubmit = (e: React.FormEvent<HTMLButtonElement>) => {
+
+  const validation = (res: AxiosResponse<any>) => {
+    if (res.data.ok) {
+      setIsSwitchRegister(false);
+      if (!registerSuccessFlashMsg.find((flash) => flash.msg === "註冊成功!"))
+        setRegisterFlashMsg([{ status: "success", msg: "註冊成功!" }, ...[]]);
+    } else {
+      if (res.data.valid.find((valid: any) => valid === "信箱?")) {
+        setEmailError("信箱?");
+      } else {
+        setEmailError("信箱重複");
+      }
+      if (res.data.valid.find((valid: any) => valid === "暱稱?")) {
+        setUsernameError("暱稱?");
+      }
+      if (res.data.valid.find((valid: any) => valid === "密碼?")) {
+        setPasswordError("密碼?");
+      }
+      if (res.data.valid.find((valid: any) => valid === "密碼?")) {
+        setConfirmPasswordError("重複密碼?");
+      }
+    }
+  };
+
+  const RegisterSubmit = async (e: React.FormEvent<HTMLButtonElement>) => {
+    setIsLoading(true);
     e.preventDefault();
-    axios
-      .post("http://localhost:80/FoodAdvisorServer/user/register.php", {
+    await axios
+      .post(`${SERVER_API_KEY}/user/register.php`, {
         email,
         username,
         password,
         confirmPassword,
       })
       .then((res) => {
-        if (res.data.ok) {
-          setIsSwitchRegister(false);
-          if (
-            !registerSuccessFlashMsg.find((flash) => flash.msg === "註冊成功!")
-          )
-            setRegisterFlashMsg([
-              { status: "success", msg: "註冊成功!" },
-              ...[],
-            ]);
-        } else {
-          console.log(res.data.valid);
-          if (res.data.valid.find((valid: any) => valid === "信箱?")) {
-            setEmailError("信箱?");
-          } else if (
-            res.data.valid.find((valid: any) => valid === "信箱重複")
-          ) {
-            setEmailError("信箱重複");
-          } else {
-          }
-          if (res.data.valid.find((valid: any) => valid === "暱稱?")) {
-            setUsernameError("暱稱?");
-          } else {
-          }
-          if (res.data.valid.find((valid: any) => valid === "密碼?")) {
-            setPasswordError("密碼?");
-          } else {
-          }
-          if (res.data.valid.find((valid: any) => valid === "密碼?")) {
-            setConfirmPasswordError("重複密碼?");
-          } else {
-          }
-        }
+        validation(res);
+        console.log("stop loading");
+        setIsLoading(false);
       })
       .catch((err) => console.log(err));
   };
+
+  useEffect(() => {
+    return () => setIsLoading(false); //unmount this component
+  }, []);
 
   return (
     <form className="login-popup-login-form">
@@ -136,7 +139,11 @@ export const RegisterForm: React.FC<Props> = ({
         className="login-popup-button login-popup-login-submit"
         onClick={RegisterSubmit}
       >
-        <h5>成為會員</h5>
+        {isLoading ? (
+          <PulseLoader color={"white"} loading={isLoading} size={6} />
+        ) : (
+          <h5>成為會員</h5>
+        )}
       </button>
       <button
         className="login-popup-button login-popup-switch-to-register"
