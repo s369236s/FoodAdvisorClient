@@ -1,0 +1,109 @@
+:root {
+  font-size: 16px;
+  font-family: Helvetica, 微軟正黑體;
+  --bg-primary: #ffffff;
+  --bg-secondary: #819ad1;
+  --bg-third: #000000;
+  --bg-third-hover: #000000c4;
+}
+
+.user-review-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 7rem;
+  width: 100%;
+}
+.user-review-form-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+}
+.user-review-input-container {
+  display: flex;
+  position: relative;
+}
+.user-review-input-icon {
+  position: absolute;
+  top: 50%;
+  left: 7%;
+  transform: translate(-50%, -50%);
+}
+.user-review-input {
+  border-radius: 4px;
+  border: 1px #c3c3c3 solid;
+  margin: 4px;
+  padding-left: 2.5rem;
+  min-width: 20rem;
+  font-size: 1.25rem;
+  line-height: 38px;
+}
+.found-restaurants-container {
+  margin-top: 5rem;
+  width: 50rem;
+}
+.found-restaurants-container > *:not(*:first-child, *:nth-child(2)) {
+  margin-top: 2rem;
+}
+.found-restaurants-container > h3 {
+  font-size: 1.5rem;
+  color: #6b6b6b;
+  padding: 1rem;
+}
+.found-restaurant-container {
+  border: 1px #c3c3c3 solid;
+  display: flex;
+}
+.found-restaurant-container:hover {
+  box-shadow: 3px 3px 5px 5px #d4d4d4;
+}
+.found-restaurant-container > img {
+  width: 15rem;
+}
+
+.found-restaurant-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.found-restaurant-info > h2 {
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: #069;
+}
+.found-restaurant-info > h2:hover {
+  text-decoration: underline;
+}
+
+.found-restaurant-info > p {
+  color: #555454;
+}
+.found-restaurant-info > * {
+  padding: 0.5rem 0 0 1rem;
+}
+@media only screen and (max-width: 768px) {
+  .found-restaurants-container {
+    width: 30rem;
+  }
+  .found-restaurant-container > img {
+    width: 10rem;
+  }
+}
+
+@media only screen and (max-width: 520px) {
+  .user-review-input {
+    min-width: 15rem;
+  }
+  .user-review-input-icon {
+    left: 8.5%;
+  }
+  .found-restaurants-container {
+    width: 20rem;
+  }
+  .found-restaurant-container > img {
+    width: 8rem;
+  }
+}

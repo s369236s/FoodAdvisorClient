@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useRef } from "react";
 import { SERVER_API_KEY } from "../../../apiKey";
-import { Login, Person, Plus } from "../../../Svg";
+import { BookMarkPlus, Login, Person, Plus } from "../../../Svg";
 import { setAccessToken } from "../../Token/accessToken";
 import { DropLink } from "../DropDown/DropLink";
 interface Props {
@@ -60,12 +60,32 @@ export const NavUserDropDown: React.FC<Props> = ({
     <div className="nav-user-dropdown-container">
       <div className="nav-user-dropdown" ref={dropdownRef}>
         {isMobile ? (
-          <DropLink text="評論" needPopup={false} children={Plus} />
+          <DropLink
+            isLink={true}
+            text="評論"
+            toLink="/UserReview"
+            needPopup={false}
+            children={Plus}
+          />
         ) : (
           <></>
         )}
-        <DropLink text="帳戶" needPopup={false} children={Person} />
         <DropLink
+          isLink={true}
+          toLink="/addRestaurant"
+          text="登記餐廳"
+          needPopup={false}
+          children={BookMarkPlus}
+        />
+        <DropLink
+          isLink={true}
+          toLink="/account"
+          text="帳戶"
+          needPopup={false}
+          children={Person}
+        />
+        <DropLink
+          isLink={false}
           action={logOutHandler}
           text="登出"
           needPopup={false}

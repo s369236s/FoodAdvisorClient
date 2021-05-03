@@ -19,6 +19,7 @@ export const RegisterForm: React.FC<Props> = ({
   registerSuccessFlash: registerSuccessFlashMsg,
   setRegisterSuccessFlash: setRegisterFlashMsg,
 }) => {
+  const [isPressed, setIsPressed] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
@@ -33,21 +34,36 @@ export const RegisterForm: React.FC<Props> = ({
     if (res.data.ok) {
       setIsSwitchRegister(false);
       if (!registerSuccessFlashMsg.find((flash) => flash.msg === "註冊成功!"))
-        setRegisterFlashMsg([{ status: "success", msg: "註冊成功!" }, ...[]]);
+        setRegisterFlashMsg([{ status: "success", msg: "註冊成功!😂" }, ...[]]);
     } else {
-      if (res.data.valid.find((valid: any) => valid === "信箱?")) {
-        setEmailError("信箱?");
+      if (isPressed) {
+        setEmailError("");
+        setUsernameError("");
+        setPasswordError("");
+        setConfirmPasswordError("");
       } else {
-        setEmailError("信箱重複");
+        setIsPressed(true);
       }
-      if (res.data.valid.find((valid: any) => valid === "暱稱?")) {
-        setUsernameError("暱稱?");
+      if (res.data.errors.find((valid: any) => valid === "信箱?")) {
+        setEmailError("信箱? 👀");
       }
-      if (res.data.valid.find((valid: any) => valid === "密碼?")) {
-        setPasswordError("密碼?");
+      if (res.data.errors.find((valid: any) => valid === "格式錯誤")) {
+        setEmailError("格式錯誤 😩");
       }
-      if (res.data.valid.find((valid: any) => valid === "密碼?")) {
-        setConfirmPasswordError("重複密碼?");
+      if (res.data.errors.find((valid: any) => valid === "信箱重複")) {
+        setEmailError("信箱重複 😜");
+      }
+      if (res.data.errors.find((valid: any) => valid === "暱稱?")) {
+        setUsernameError("暱稱? 🤚");
+      }
+      if (res.data.errors.find((valid: any) => valid === "密碼?")) {
+        setPasswordError("密碼? 🙅‍♂️");
+      }
+      if (res.data.errors.find((valid: any) => valid === "重複密碼?")) {
+        setConfirmPasswordError("重複密碼?🥴");
+      }
+      if (res.data.errors.find((valid: any) => valid === "密碼錯誤")) {
+        setConfirmPasswordError("密碼錯誤 👐");
       }
     }
   };

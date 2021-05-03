@@ -19,7 +19,7 @@ export const Nav: React.FC<Props> = ({}) => {
   useEffect(() => {
     axios
       .post(
-        `${SERVER_API_KEY}/user/refresh_token.php`,
+        `${SERVER_API_KEY}/auth/refresh_token.php`,
         {},
         { withCredentials: true }
       )
@@ -35,12 +35,15 @@ export const Nav: React.FC<Props> = ({}) => {
   return (
     <nav className="nav-container">
       <div className="nav-left-container center">
-        <img src="logo.png" alt="" />
-        <h1>FoodAdvisor</h1>
+        <Link to="/">
+          <img src="logo.png" alt="" />
+          <h1>FoodAdvisor</h1>
+        </Link>
+
         <SearchBar />
       </div>
       <div className="nav-right-container">
-        <Link className="nav-review-button nav-button" to="/">
+        <Link className="nav-review-button nav-button" to="/UserReview">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="16"

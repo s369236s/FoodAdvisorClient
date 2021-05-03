@@ -9,6 +9,7 @@ interface Props {
   closePopup: () => void;
 }
 export const LoginForm: React.FC<Props> = ({ switchSubmit, closePopup }) => {
+  const [isPressed, setIsPressed] = useState(false);
   const [isLoading, setisLoading] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -17,16 +18,23 @@ export const LoginForm: React.FC<Props> = ({ switchSubmit, closePopup }) => {
 
   const validation = (res: AxiosResponse<any>) => {
     setAccessToken("");
+    console.log(res.data);
     if (!res.data.ok) {
-      if (res.data.valid.find((valid: any) => valid === "信箱?")) {
-        setEmailError("信箱?");
+      if (isPressed) {
+        setEmailError("");
+        setPasswordError("");
+      } else {
+        setIsPressed(true);
+      }
+      if (res.data.errors.find((valid: any) => valid === "信箱?")) {
+        setEmailError("信箱? 🤔");
       } else {
         // setEmailError("信箱不存在");
       }
-      if (res.data.valid.find((valid: any) => valid === "密碼?")) {
-        setPasswordError("密碼?");
+      if (res.data.errors.find((valid: any) => valid === "密碼?")) {
+        setPasswordError("密碼? 👎");
       } else {
-        setPasswordError("密碼錯誤");
+        setPasswordError("密碼錯誤 🤧");
       }
     } else {
       window.location.reload();
@@ -52,6 +60,7 @@ export const LoginForm: React.FC<Props> = ({ switchSubmit, closePopup }) => {
       .then((res) => {
         setisLoading(false);
         console.log(res.data);
+
         validation(res);
       });
   };

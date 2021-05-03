@@ -30,8 +30,14 @@ export const DropDown: React.FC<Props> = ({ setToggle, toggle }) => {
   }, [toggle]);
   return (
     <div className="nav-right-dropdown" ref={dropdownRef}>
-      <DropLink text="評論" needPopup={false} children={Plus} />
-      <DropLink text="登入" needPopup={true} children={Login} />
+      <DropLink
+        isLink={true}
+        toLink="/UserReview"
+        text="評論"
+        needPopup={false}
+        children={Plus}
+      />
+      <DropLink isLink={false} text="登入" needPopup={true} children={Login} />
     </div>
   );
 };

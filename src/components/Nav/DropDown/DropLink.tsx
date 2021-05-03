@@ -1,9 +1,12 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import Popup from "reactjs-popup";
 import { LoginPopup } from "../../../pages/LoginPopup";
 interface Props {
   text: string;
   needPopup: boolean;
+  isLink: boolean;
+  toLink?: any;
   action?: () => void;
 }
 
@@ -12,13 +15,24 @@ export const DropLink: React.FC<Props> = ({
   needPopup,
   children,
   action,
+  isLink,
+  toLink,
 }) => {
   if (!needPopup)
     return (
-      <div onClick={action} className="nav-dropmenu-link">
-        <>{children}</>
-        <h3>{text}</h3>
-      </div>
+      <>
+        {isLink ? (
+          <Link to={toLink} onClick={action} className="nav-dropmenu-link">
+            <>{children}</>
+            <h3>{text}</h3>
+          </Link>
+        ) : (
+          <div onClick={action} className="nav-dropmenu-link">
+            <>{children}</>
+            <h3>{text}</h3>
+          </div>
+        )}
+      </>
     );
   else
     return (

@@ -1,30 +1,43 @@
 import React from "react";
 import "../../styles/RestaurantGrid.css";
+import ReactStars from "react-rating-stars-component";
+import { emptyStar, halfStar, fullStar } from "../../Svg";
 
-export const RestaurantGrid: React.FC = () => {
+interface Props {
+  name: string;
+  review_star: any;
+  totalReview: number;
+  main_area: string;
+}
+export const RestaurantGrid: React.FC<Props> = ({
+  name,
+  main_area,
+  review_star,
+  totalReview,
+}) => {
   return (
     <div className="restaurant-grid">
       <div className="restaurant-grid-image">
         <img src="media/piepieboss.jpg" alt="" />
+        <div className="restaurant-grid-star"></div>
       </div>
       <article>
-        <h2>兇兇闆老</h2>
+        <h2>{name}</h2>
         <div className="restaurant-review-container">
-          <div>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
-              fill=" #60c299"
-              className="bi bi-star-fill"
-              viewBox="0 0 16 16"
-            >
-              <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-            </svg>
-          </div>
-          <p>100則評論</p>
+          <ReactStars
+            edit={false}
+            activeColor="#819ad1"
+            value={parseFloat(review_star)}
+            count={5}
+            size={24}
+            isHalf={true}
+            emptyIcon={emptyStar}
+            halfIcon={halfStar}
+            filledIcon={fullStar}
+          />
+          <p>{totalReview}則評論</p>
         </div>
-        <p>桃園</p>
+        <p>{main_area}</p>
       </article>
     </div>
   );

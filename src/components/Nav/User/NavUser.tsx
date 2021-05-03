@@ -1,6 +1,4 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { SERVER_API_KEY } from "../../../apiKey";
 import { NavUserDropDown } from "./NavUserDropDown";
 
 interface Props {
@@ -12,9 +10,9 @@ export const NavUser: React.FC<Props> = ({ isAuth, isMobile }) => {
   const [toggle, setToggle] = useState(false);
   useEffect(() => {
     if (isAuth) {
-      axios.get(`${SERVER_API_KEY}/user/user.php`).then((res) => {
-        // console.log(res.data);
-      });
+      // axios.get(`${SERVER_API_KEY}/user/user.php`).then((res) => {
+      //   // console.log(res.data);
+      // });
     }
   }, []);
   return (
