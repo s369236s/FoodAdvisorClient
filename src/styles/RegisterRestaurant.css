@@ -1,0 +1,78 @@
+.register-restaurant-body {
+  margin-top: 7rem;
+  display: flex;
+  flex-direction: column;
+}
+.register-restaurant-body > h1 {
+  text-align: center;
+}
+.register-restaurant-form {
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+}
+.register-restaurant-form > *:not(*:nth-child(1)) {
+  margin-top: 1rem;
+}
+.register-restaurant-input-container {
+  display: flex;
+  font-size: 1.2rem;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.register-restaurant-textarea {
+  margin-top: 1rem;
+  width: 200px;
+  padding: 0.4rem 0 0.4rem 2.5rem;
+  height: 10rem;
+  margin-left: 1rem;
+  resize: none;
+}
+
+.register-restaurant-input-container > svg {
+  position: absolute;
+  left: 28%;
+}
+
+.register-restaurant-input {
+  margin-left: 1rem;
+  border-radius: 4px;
+  border: 1px rgb(189, 188, 188) solid;
+  padding: 0.4rem 0 0.4rem 2.5rem;
+  font-size: 1.2rem;
+}
+.register-restaurant-textarea-container {
+  display: flex;
+  font-size: 1.2rem;
+  align-items: center;
+  position: relative;
+}
+.register-restaurant-textarea-container > p {
+  align-self: flex-start;
+  margin-top: 1rem;
+}
+.register-restaurant-textarea-container > svg {
+  position: absolute;
+  left: 28%;
+  top: 14%;
+}
+
+@media only screen and (max-width: 452px) {
+  .register-restaurant-input {
+    width: 9rem;
+  }
+  .register-restaurant-input-container > svg {
+    /* top: 50%; */
+    left: 37%;
+  }
+  .register-restaurant-form {
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+  }
+  .register-restaurant-textarea {
+    margin-top: 1rem;
+    width: 8rem;
+  }
+}

@@ -72,7 +72,7 @@ export const NavUserDropDown: React.FC<Props> = ({
         )}
         <DropLink
           isLink={true}
-          toLink="/addRestaurant"
+          toLink="/RegisterRestaurant"
           text="登記餐廳"
           needPopup={false}
           children={BookMarkPlus}

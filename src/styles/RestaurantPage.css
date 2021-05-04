@@ -54,20 +54,20 @@
   justify-content: center;
   align-items: center;
   padding: 2rem;
-  width: 26.5rem;
+  width: 35.5rem;
 }
 .restaurant-page-body-main-image-container > .restaurant-page-body-img {
   width: 100%;
 }
 
 .restaurant-page-body-main-image-container {
-  width: max(40%, 18rem);
+  width: max(40%, 24rem);
 }
 
 .restaurant-page-body-second-image-container {
   display: flex;
   flex-direction: column;
-  width: 8.5rem;
+  width: 11.5rem;
   padding-left: 1rem;
 }
 
@@ -86,7 +86,8 @@
 }
 .restaurant-page-body-intro-container {
   padding: 2rem;
-  width: 20rem;
+  width: 30rem;
+  font-size: 1.5rem;
 }
 
 @media only screen and (max-width: 768px) {
