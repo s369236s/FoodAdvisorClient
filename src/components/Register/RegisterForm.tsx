@@ -123,7 +123,7 @@ export const RegisterForm: React.FC<Props> = ({
       <section className="login-popup-input-container">
         <h5>密碼</h5>
         <input
-          type="text"
+          type="password"
           placeholder="密碼"
           name="password"
           onChange={(e) => setPassword(e.target.value)}
@@ -137,7 +137,7 @@ export const RegisterForm: React.FC<Props> = ({
       <section className="login-popup-input-container">
         <h5>確認密碼</h5>
         <input
-          type="text"
+          type="password"
           placeholder="確認密碼"
           name="confirmPassword"
           onChange={(e) => setConfirmPassword(e.target.value)}

@@ -89,7 +89,7 @@ export const LoginForm: React.FC<Props> = ({ switchSubmit, closePopup }) => {
       <section className="login-popup-input-container">
         <h5>密碼</h5>
         <input
-          type="text"
+          type="password"
           placeholder="密碼"
           onChange={(e) => setPassword(e.target.value)}
         />
