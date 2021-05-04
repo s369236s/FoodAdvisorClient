@@ -10,11 +10,13 @@
   padding: 3rem;
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 .register-restaurant-form > *:not(*:nth-child(1)) {
   margin-top: 1rem;
 }
 .register-restaurant-input-container {
+  max-width: 376px;
   display: flex;
   font-size: 1.2rem;
   align-items: center;
@@ -23,11 +25,13 @@
 }
 .register-restaurant-textarea {
   margin-top: 1rem;
-  width: 200px;
-  padding: 0.4rem 0 0.4rem 2.5rem;
+  border-radius: 4px;
+  padding: 0.4rem 0.2rem 0.4rem 2.5rem;
   height: 10rem;
   margin-left: 1rem;
   resize: none;
+  border: 1px rgb(189, 188, 188) solid;
+  font-size: 1.2rem;
 }
 
 .register-restaurant-input-container > svg {
@@ -58,9 +62,125 @@
   top: 14%;
 }
 
+.register-restaurant-submit {
+  align-self: center;
+  color: white;
+  background-color: var(--bg-third);
+  display: flex;
+  border-radius: 1rem;
+  border: none;
+  width: 4rem;
+  font-family: 微軟正黑體;
+  font-size: 1rem;
+  font-weight: 900;
+  cursor: pointer;
+  height: 36px;
+  align-items: center;
+  justify-content: center;
+}
+.register-restaurant-upload-img-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.register-restaurant-upload-input-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0 1rem 0 2rem;
+}
+
+.register-restaurant-upload-input-trigger {
+  width: 60px;
+  height: 60px;
+  border: 1px #0084ff dashed;
+  justify-content: center;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  border-radius: 5 px;
+  cursor: pointer;
+}
+
+.popup-content {
+  min-width: 50ch;
+  height: 40ch;
+}
+
+.register-restaurant-upload-popup-input-container {
+  height: 100%;
+  align-self: center;
+  align-items: center;
+  width: 60px;
+  height: 60px;
+  border: 1px rgb(0, 132, 255) dashed;
+  justify-content: center;
+  display: flex;
+  border-radius: 5 px;
+  cursor: pointer;
+}
+.register-restaurant-upload-popup {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.register-restaurant-upload-popup-left {
+  flex-direction: column;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.register-restaurant-upload-popup-left > button {
+  align-self: center;
+  color: white;
+  background-color: var(--bg-third);
+  display: flex;
+  border-radius: 1rem;
+  border: none;
+  width: 4rem;
+  font-family: 微軟正黑體;
+  font-size: 1rem;
+  font-weight: 900;
+  cursor: pointer;
+  height: 36px;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.register-restaurant-crop-img {
+  display: flex;
+  position: relative;
+  width: 10rem;
+  height: 10rem;
+  border: 1px rgb(199, 199, 199) solid;
+  background-color: #f3f3f3;
+  justify-content: center;
+}
+
+.register-restaurant-crop-img-container {
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  margin-top: 1rem;
+}
+.register-restaurant-upload-input-container > h5 {
+  margin: 0;
+}
+@media only screen and (max-width: 768px) {
+  .register-restaurant-crop-img-container {
+    margin-top: 1rem;
+  }
+}
 @media only screen and (max-width: 452px) {
   .register-restaurant-input {
     width: 9rem;
+    font-size: 1rem;
   }
   .register-restaurant-input-container > svg {
     /* top: 50%; */
@@ -71,8 +191,14 @@
     justify-content: center;
     padding: 1rem;
   }
+  .register-restaurant-textarea-container > svg {
+    position: absolute;
+    left: 37%;
+    top: 13%;
+  }
   .register-restaurant-textarea {
+    font-size: 1rem;
     margin-top: 1rem;
-    width: 8rem;
+    width: 9rem;
   }
 }

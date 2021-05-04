@@ -6,7 +6,9 @@
   --bg-third: #000000;
   --bg-third-hover: #000000c4;
 }
-
+textarea:focus {
+  outline: none;
+}
 input:focus {
   outline: none;
 }

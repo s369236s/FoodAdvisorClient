@@ -1,10 +1,43 @@
-import React from "react";
+import axios from "axios";
+import React, { FormEvent, useRef, useState } from "react";
+import { SERVER_API_KEY } from "../../apiKey";
+import { RegisterRestaurantUpload } from "./RegisterRestaurantUpload";
 
 interface Props {}
 
 export const RegisterRestaurantForm: React.FC<Props> = ({}) => {
+  let [cropResult_1, setCropResult_1] = useState("");
+  let [cropResult_2, setCropResult_2] = useState("");
+  let [cropResult_3, setCropResult_3] = useState("");
+  const [name, setName] = useState("");
+  const [address, setAddress] = useState("");
+  const [number, setNumber] = useState("");
+  const [intro, setIntro] = useState("");
+
+  const handleSubmit = () => {
+    const formData = new FormData();
+    // formData.append("merchImg", file);
+
+    formData.append("main_pic", cropResult_1);
+    formData.append("other_pic_1", cropResult_2);
+    formData.append("other_pic_2", cropResult_3);
+    formData.append("name", name);
+    formData.append("address", address);
+    formData.append("number", number);
+    formData.append("intro", intro);
+    axios
+      .post(`${SERVER_API_KEY}/restaurant/register_restaurant.php`, formData, {
+        withCredentials: true,
+      })
+      .then((res) => {
+        // if (res.data.ok) {
+        console.log(res.data);
+        // }
+      });
+  };
+
   return (
-    <form className="register-restaurant-form">
+    <div className="register-restaurant-form">
       <section className="register-restaurant-input-container">
         <p>餐廳名稱</p>
         <RestaurantInputIcon />
@@ -12,6 +45,8 @@ export const RegisterRestaurantForm: React.FC<Props> = ({}) => {
           type="text"
           className="register-restaurant-input"
           placeholder="餐廳名稱"
+          onChange={(e) => setName(e.target.value)}
+          name="name"
         />
       </section>
       <section className="register-restaurant-input-container">
@@ -28,6 +63,8 @@ export const RegisterRestaurantForm: React.FC<Props> = ({}) => {
           type="text"
           className="register-restaurant-input"
           placeholder="餐廳地址"
+          onChange={(e) => setAddress(e.target.value)}
+          name="address"
         />
       </section>
       <section className="register-restaurant-input-container">
@@ -40,7 +77,7 @@ export const RegisterRestaurantForm: React.FC<Props> = ({}) => {
           viewBox="0 0 16 16"
         >
           <path
-            fill-rule="evenodd"
+            fillRule="evenodd"
             d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z"
           />
         </svg>
@@ -48,6 +85,8 @@ export const RegisterRestaurantForm: React.FC<Props> = ({}) => {
           type="text"
           className="register-restaurant-input"
           placeholder="餐廳電話"
+          onChange={(e) => setNumber(e.target.value)}
+          name="number"
         />
       </section>
       <section className="register-restaurant-textarea-container">
@@ -62,12 +101,57 @@ export const RegisterRestaurantForm: React.FC<Props> = ({}) => {
           <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001z" />
         </svg>
         <textarea
-          name=""
+          name="intro"
           className="register-restaurant-textarea"
           placeholder="寫下餐廳的介紹"
+          onChange={(e) => setIntro(e.target.value)}
         ></textarea>
       </section>
-    </form>
+      <div className="register-restaurant-upload-img-container">
+        <div className="register-restaurant-crop-img-container">
+          {" "}
+          <RegisterRestaurantUpload
+            name="main_pic"
+            text={"上傳主照片"}
+            setCropResult={setCropResult_1}
+          />
+          <img
+            src={cropResult_1}
+            alt="主照片"
+            className="register-restaurant-crop-img"
+          />
+        </div>
+        <div className="register-restaurant-crop-img-container">
+          <RegisterRestaurantUpload
+            name="other_pic_1"
+            text={"上傳副照片"}
+            setCropResult={setCropResult_2}
+          />
+          <img
+            src={cropResult_2}
+            alt="副照片"
+            className="register-restaurant-crop-img"
+          />
+        </div>
+        <div className="register-restaurant-crop-img-container">
+          {" "}
+          <RegisterRestaurantUpload
+            name="other_pic_2"
+            text={"上傳副照片"}
+            setCropResult={setCropResult_3}
+          />
+          <img
+            src={cropResult_3}
+            alt="副照片"
+            className="register-restaurant-crop-img"
+          />
+        </div>
+      </div>
+
+      <button className="register-restaurant-submit" onClick={handleSubmit}>
+        登記
+      </button>
+    </div>
   );
 };
 
