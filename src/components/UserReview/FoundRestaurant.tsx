@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import ReactStars from "react-rating-stars-component";
 import { emptyStar, halfStar, fullStar } from "../../Svg";
@@ -7,7 +7,7 @@ interface Props {
 }
 export const FoundRestaurant: React.FC<Props> = ({ reviewStar }) => {
   return (
-    <Link className="found-restaurant-container" to="/">
+    <Link className="found-restaurant-container" to={`/Restaurant?${"aaa"}`}>
       <img
         className="found-restaurant-container-img"
         src="media/piepieboss.jpg"

@@ -12,7 +12,7 @@ interface Props {
 export const MainPageRestaurantGrids: React.FC<Props> = ({ grids }) => {
   return (
     <div className="main-page-restaurant-grids-container">
-      {grids.map((grid, i) => (
+      {grids?.map((grid, i) => (
         <RestaurantGrid
           key={i}
           name={grid.name}

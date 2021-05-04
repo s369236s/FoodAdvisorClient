@@ -1,0 +1,46 @@
+:root {
+  font-size: 16px;
+  font-family: Helvetica, 微軟正黑體;
+  --bg-primary: #ffffff;
+  --bg-secondary: #819ad1;
+  --bg-third: #000000;
+  --bg-third-hover: #000000c4;
+}
+.restaurant-page-body-containter {
+  display: flex;
+  flex-direction: column;
+  padding: 7rem 4rem 0.5rem 2rem;
+  width: 100%;
+  box-shadow: 0 0 2px black;
+}
+.restaurant-page-body-info {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.restaurant-page-body-info-review {
+  display: flex;
+  align-items: center;
+}
+
+.restaurant-page-body-info-location {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.restaurant-page-body-info-location > p {
+  padding-left: 0.25rem;
+}
+
+.restaurant-page-body-info-location > svg {
+  padding-left: 0.25rem;
+}
+.restaurant-page-body-info-location > svg:not(*:first-child) {
+  margin-left: 1rem;
+  border-left: 1px grey solid;
+  padding-left: 0.5rem;
+}
+.restaurant-page-body-info-location > *:nth-child(4) {
+  color: grey;
+}
