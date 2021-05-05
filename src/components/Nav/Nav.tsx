@@ -60,6 +60,7 @@ export const Nav: React.FC<Props> = ({}) => {
           <NavUser isAuth={isAuth} />
         ) : (
           <Popup
+            className="login-popup"
             trigger={
               <button className="nav-login-button nav-button">
                 <p>登入</p>

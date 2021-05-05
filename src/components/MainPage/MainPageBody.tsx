@@ -10,6 +10,9 @@ interface Grids {
   review_star: number;
   totalReview: number;
   main_area: string;
+  main_pic: string;
+  other_pic_1: string;
+  other_pic_2: string;
 }
 export const MainPageBody: React.FC = ({}) => {
   const [grids, setGrids] = useState<Grids[]>([]);
@@ -17,8 +20,9 @@ export const MainPageBody: React.FC = ({}) => {
     axios
       .get(`${SERVER_API_KEY}/restaurant/main_page_restaurant.php`)
       .then((res) => {
-        console.log(res.data.data);
-        setGrids(res.data.data);
+        console.log(res.data);
+        if (res.data.ok) setGrids(res.data.data);
+        else setGrids([]);
       });
     return () => {};
   }, []);

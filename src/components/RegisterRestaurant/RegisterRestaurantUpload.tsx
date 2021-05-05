@@ -30,6 +30,7 @@ export const RegisterRestaurantUpload: React.FC<Props> = ({
     <div className="register-restaurant-upload-input-container">
       <h5>{text}</h5>
       <Popup
+        className="register-restaurant-popup-content"
         trigger={
           <button className="register-restaurant-upload-input-trigger">
             <svg
@@ -53,10 +54,12 @@ export const RegisterRestaurantUpload: React.FC<Props> = ({
                 <input
                   style={{ display: "none" }}
                   type="file"
+                  name={name}
                   className="register-restaurant-upload-popup-input"
                   onChange={(e: any) => {
                     setFile(e.target.files[0]);
                     setPreview(URL.createObjectURL(e.target.files[0]));
+                    console.log(URL.createObjectURL(e.target.files[0]));
                   }}
                 />
                 <svg

@@ -15,13 +15,8 @@ export const RegisterRestaurantCrop: React.FC<Props> = ({
   return (
     <div className="register-restaurant-crop-container">
       <Cropper
+        className="register-restaurant-cropper"
         src={preview}
-        style={{
-          height: 300,
-          width: 300,
-          alignSelf: "center",
-          background: "rgb(179, 179, 179)",
-        }}
         ref={cropperRef}
         aspectRatio={1}
         minCropBoxHeight={10}

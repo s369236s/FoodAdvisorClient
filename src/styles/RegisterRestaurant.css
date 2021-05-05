@@ -78,6 +78,10 @@
   align-items: center;
   justify-content: center;
 }
+.register-restaurant-submit:hover {
+  background-color: #000000c4;
+  transition: 0.2s;
+}
 .register-restaurant-upload-img-container {
   display: flex;
   justify-content: center;
@@ -105,9 +109,17 @@
   cursor: pointer;
 }
 
-.popup-content {
+.register-restaurant-popup-content-content {
   min-width: 50ch;
   height: 40ch;
+}
+.register-restaurant-select {
+  margin: 0.5rem;
+}
+
+.login-popup-content {
+  min-width: auto;
+  height: auto;
 }
 
 .register-restaurant-upload-popup-input-container {
@@ -122,6 +134,7 @@
   border-radius: 5 px;
   cursor: pointer;
 }
+
 .register-restaurant-upload-popup {
   height: 100%;
   display: flex;
@@ -152,14 +165,17 @@
   justify-content: center;
   margin-top: 1rem;
 }
-
+.register-restaurant-upload-popup-left > button:hover {
+  background-color: #000000c4;
+  transition: 0.2s;
+}
 .register-restaurant-crop-img {
   display: flex;
   position: relative;
   width: 10rem;
   height: 10rem;
   border: 1px rgb(199, 199, 199) solid;
-  background-color: #f3f3f3;
+  background-color: #d1d1d1;
   justify-content: center;
 }
 
@@ -169,6 +185,12 @@
   align-self: center;
   margin-top: 1rem;
 }
+.register-restaurant-cropper {
+  height: 300px;
+  width: 300px;
+  align-self: center;
+  background: #b3b3b3;
+}
 .register-restaurant-upload-input-container > h5 {
   margin: 0;
 }
@@ -176,7 +198,19 @@
   .register-restaurant-crop-img-container {
     margin-top: 1rem;
   }
+  .register-restaurant-cropper {
+    width: 225px;
+    height: 225px;
+  }
 }
+
+@media only screen and (max-width: 500px) {
+  .register-restaurant-popup-content-content {
+    min-width: 40ch;
+    height: 40ch;
+  }
+}
+
 @media only screen and (max-width: 452px) {
   .register-restaurant-input {
     width: 9rem;
