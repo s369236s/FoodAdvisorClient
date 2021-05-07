@@ -4,6 +4,7 @@ import ReactStars from "react-rating-stars-component";
 import axios from "axios";
 import { SERVER_API_KEY } from "../../apiKey";
 import { useLocation } from "react-router";
+import { RestaurantPageReviews } from "./RestaurantPageReviews";
 interface Restaurant {
   name: string;
   review_star: string;
@@ -26,9 +27,14 @@ export const RestaurantPageBody: React.FC<Props> = ({}) => {
 
   const [info, setInfo] = useState<Restaurant>();
   const [star, setStar] = useState(0);
+  const [starKeyForce, setStarKeyForce] = useState(0);
+
+  useEffect(() => {
+    setStarKeyForce((prev) => prev + 1);
+  }, [info?.review_star]);
+
   useEffect(() => {
     const id = query.get("id");
-
     const fetchData = async () => {
       await axios
         .get(`${SERVER_API_KEY}/restaurant/get_restaurant_page.php?id=${id}`, {
@@ -37,7 +43,6 @@ export const RestaurantPageBody: React.FC<Props> = ({}) => {
         .then((res) => {
           if (res.data.ok) {
             setInfo(res.data.data);
-            setStar(res.data.data.review_star);
           }
         })
         .catch((err) => console.log(err));
@@ -46,14 +51,14 @@ export const RestaurantPageBody: React.FC<Props> = ({}) => {
     fetchData();
 
     return () => {};
-  }, [info]);
+  }, []);
   return (
     <div className="restaurant-page-body-containter">
       <div className="restaurant-page-body-info">
         <h1 className="restaurant-page-body-info-title">{info?.name}</h1>
         <section className="restaurant-page-body-info-review">
           <ReactStars
-            edit={true}
+            edit={false}
             activeColor="#819ad1"
             value={info?.review_star}
             count={5}
@@ -62,6 +67,7 @@ export const RestaurantPageBody: React.FC<Props> = ({}) => {
             emptyIcon={emptyStar}
             halfIcon={halfStar}
             filledIcon={fullStar}
+            key={starKeyForce}
           />
           <h4 className="restaurant-page-body-info-total-review">100則評論</h4>
         </section>
@@ -114,7 +120,7 @@ export const RestaurantPageBody: React.FC<Props> = ({}) => {
           </div>
         </div>
       </div>
-      <button onClick={() => setStar(2)}>ssss</button>
+      <RestaurantPageReviews />
     </div>
   );
 };

@@ -1,0 +1,140 @@
+:root {
+  font-size: 16px;
+  font-family: Helvetica, 微軟正黑體;
+  --bg-primary: #ffffff;
+  --bg-secondary: #819ad1;
+  --bg-third: #000000;
+  --bg-third-hover: #000000c4;
+}
+
+.review-restaurant-container {
+  width: 100%;
+}
+
+.review-restaurant-body {
+  width: 70%;
+  padding: 2rem;
+  box-shadow: 0 0 4px grey;
+}
+
+.review-restaurant-header {
+  margin-top: 7rem;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.review-restaurant-header > .review-restaurant-info {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  margin-left: 2rem;
+}
+
+.review-restaurant-header > img {
+  width: 10rem;
+  height: 10rem;
+}
+
+.review-restaurant-body > h2 {
+  color: grey;
+  padding: 1rem 0;
+  margin-top: 2rem;
+  border-bottom: 1px rgb(202, 199, 199) solid;
+}
+
+.review-restaurant-rating {
+  display: flex;
+  flex-direction: column;
+}
+.review-restaurant-rating > h5 {
+  margin: 1rem 0 0.5rem;
+}
+
+.review-restaurant-input-container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1rem;
+}
+
+.review-restaurant-input-container > h5 {
+  margin: 0;
+}
+
+.review-restaurant-input {
+  font-size: 1.2rem;
+  padding: 0.5rem;
+  border-radius: 4px;
+  border: 1px #b8b7b7 solid;
+  margin-top: 0.4rem;
+}
+
+.review-restaurant-textarea {
+  font-size: 1.2rem;
+  padding: 0.5rem;
+  border-radius: 4px;
+  border: 1px #b8b7b7 solid;
+  margin-top: 0.4rem;
+  resize: none;
+}
+
+.review-restaurant-other-rating {
+  display: flex;
+  flex-direction: column;
+}
+.review-restaurant-other-rating > h5 {
+  margin: 1rem 0 0 0;
+  padding: 0;
+}
+
+.review-restaurant-other-rating-star {
+  margin-top: 1rem;
+  margin-left: 2rem;
+  display: flex;
+  align-items: center;
+}
+
+.review-restaurant-other-rating-star > *:nth-child(2) {
+  margin-left: 5rem;
+}
+
+.review-restaurant-button {
+  display: flex;
+  align-items: center;
+  color: white;
+  background-color: black;
+  border: none;
+  border-radius: 4px;
+  padding: 0.6rem 3rem;
+  margin: 0 auto;
+}
+.review-restaurant-button:hover {
+  cursor: pointer;
+  background-color: #474646;
+  transition: 0.2s;
+}
+
+.review-restaurant-crop-img-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-self: center;
+  margin-top: 1rem;
+  margin: 2rem 0;
+}
+.review-restaurant-crop-img-container
+  > .register-restaurant-upload-input-container {
+  padding: 0.25rem;
+}
+
+@media only screen and (max-width: 400px) {
+  .review-restaurant-other-rating-star > *:nth-child(2) {
+    margin-left: 2rem;
+  }
+  .review-restaurant-body {
+    width: 80%;
+    box-shadow: none;
+  }
+  .review-restaurant-button {
+    align-self: center;
+    margin: 0 auto;
+  }
+}

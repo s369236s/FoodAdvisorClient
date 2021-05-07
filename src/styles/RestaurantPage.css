@@ -89,7 +89,90 @@
   width: 25ch;
   font-size: 1.5rem;
 }
+.restaurant-page-reviews {
+  padding: 1rem;
+  border: 1px rgb(194, 191, 191) solid;
+  margin: 2rem 2rem 1rem;
+  display: flex;
+  flex-direction: column;
+  width: 60ch;
+}
+.restaurant-page-header > * {
+  margin: 0.25rem 0.5rem 0.25rem 1rem;
+}
+.restaurant-page-header {
+  display: flex;
+  justify-content: space-between;
+}
+.restaurant-page-review-button > p {
+  color: white;
+}
+.restaurant-page-review-button {
+  padding: 0 0.5rem 0 0.5rem;
+  display: flex;
+  align-items: center;
+  color: white;
+  background-color: black;
+  border: none;
+  border-radius: 4px;
+}
+.restaurant-page-user-review-image {
+  align-self: flex-end;
+}
+.restaurant-page-user-review-image > img {
+  width: 10rem;
+  height: 10rem;
+  align-self: flex-end;
+}
 
+.restaurant-page-review-button:hover {
+  cursor: pointer;
+  background-color: #474646;
+  transition: 0.2s;
+}
+.restaurant-page-user-review {
+  margin-top: 1rem;
+  border-top: 1px #cecece solid;
+  border-bottom: 1px #cecece solid;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+}
+.restaurant-page-user-review-left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.restaurant-page-user-review-left > img {
+  width: 5rem;
+  height: 5rem;
+  border-radius: 100%;
+}
+.restaurant-page-user-review-left > p {
+  margin-top: 1rem;
+}
+.restaurant-page-user-review-right {
+  display: flex;
+  flex-direction: column;
+  margin-left: 1rem;
+}
+.restaurant-page-user-review-star {
+  display: flex;
+  align-items: center;
+}
+.restaurant-page-user-review-star > p {
+  margin-left: 0.5rem;
+  margin-bottom: 0.3rem;
+}
+
+.restaurant-page-user-review-right > h3 {
+  padding: 0 0.25rem 0.25rem 0;
+  font-weight: 600;
+}
+.restaurant-page-user-review-right > p {
+  font-size: 0.9rem;
+  color: rgb(88, 88, 88);
+}
 @media only screen and (max-width: 768px) {
   .restaurant-page-body-image-container {
     padding: 0;
