@@ -24,7 +24,7 @@ export const Nav: React.FC<Props> = ({}) => {
         { withCredentials: true }
       )
       .then((res) => {
-        console.log(res.data);
+        // (res.data);
         if (res.data.ok) {
           setIsAuth(true);
           setAccessToken(res.data.accessToken);

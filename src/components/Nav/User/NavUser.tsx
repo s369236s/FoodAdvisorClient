@@ -11,7 +11,7 @@ export const NavUser: React.FC<Props> = ({ isAuth, isMobile }) => {
   useEffect(() => {
     if (isAuth) {
       // axios.get(`${SERVER_API_KEY}/user/user.php`).then((res) => {
-      //   // console.log(res.data);
+      //   // (res.data);
       // });
     }
   }, []);

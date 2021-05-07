@@ -80,7 +80,6 @@ export const RegisterForm: React.FC<Props> = ({
       })
       .then((res) => {
         validation(res);
-        console.log("stop loading");
         setIsLoading(false);
       })
       .catch((err) => console.log(err));

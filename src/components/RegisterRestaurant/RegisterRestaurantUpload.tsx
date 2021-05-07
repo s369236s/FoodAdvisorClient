@@ -59,7 +59,6 @@ export const RegisterRestaurantUpload: React.FC<Props> = ({
                   onChange={(e: any) => {
                     setFile(e.target.files[0]);
                     setPreview(URL.createObjectURL(e.target.files[0]));
-                    console.log(URL.createObjectURL(e.target.files[0]));
                   }}
                 />
                 <svg

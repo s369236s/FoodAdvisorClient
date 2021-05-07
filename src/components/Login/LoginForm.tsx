@@ -18,7 +18,6 @@ export const LoginForm: React.FC<Props> = ({ switchSubmit, closePopup }) => {
 
   const validation = (res: AxiosResponse<any>) => {
     setAccessToken("");
-    console.log(res.data);
     if (!res.data.ok) {
       if (isPressed) {
         setEmailError("");
@@ -59,7 +58,6 @@ export const LoginForm: React.FC<Props> = ({ switchSubmit, closePopup }) => {
       )
       .then((res) => {
         setisLoading(false);
-        console.log(res.data);
 
         validation(res);
       });

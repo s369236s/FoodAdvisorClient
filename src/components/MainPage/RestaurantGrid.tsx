@@ -3,6 +3,7 @@ import "../../styles/RestaurantGrid.css";
 import ReactStars from "react-rating-stars-component";
 import { emptyStar, halfStar, fullStar } from "../../Svg";
 import { SERVER_API_KEY } from "../../apiKey";
+import { Link } from "react-router-dom";
 
 interface Props {
   name: string;
@@ -10,8 +11,7 @@ interface Props {
   totalReview: number;
   main_area: string;
   main_pic: string;
-  other_pic_1: string;
-  other_pic_2: string;
+  _id: string;
 }
 export const RestaurantGrid: React.FC<Props> = ({
   name,
@@ -19,10 +19,10 @@ export const RestaurantGrid: React.FC<Props> = ({
   review_star,
   totalReview,
   main_pic,
+  _id,
 }) => {
-  console.log(main_pic);
   return (
-    <div className="restaurant-grid">
+    <Link className="restaurant-grid" to={`/Restaurant?id=${_id}`}>
       <div className="restaurant-grid-image">
         <img src={`${SERVER_API_KEY}/${main_pic}`} alt="" />
         <div className="restaurant-grid-star"></div>
@@ -45,6 +45,6 @@ export const RestaurantGrid: React.FC<Props> = ({
         </div>
         <p>{main_area}</p>
       </article>
-    </div>
+    </Link>
   );
 };

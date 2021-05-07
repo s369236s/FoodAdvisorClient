@@ -41,7 +41,6 @@ export const NavUserDropDown: React.FC<Props> = ({
       .post(`${SERVER_API_KEY}/user/logout.php`, {}, { withCredentials: true })
       .then((res) => {
         if (res.data.ok) {
-          // console.log(res.data)
           window.location.reload();
         } else {
           console.log("you are not logged in");

@@ -34,9 +34,10 @@ export const RegisterRestaurantForm: React.FC<Props> = ({}) => {
         withCredentials: true,
       })
       .then((res) => {
+        console.log(res.data);
         setIsLoading(false);
         if (res.data.ok) {
-          history.push("/");
+          // history.push("/");
         }
       });
   };

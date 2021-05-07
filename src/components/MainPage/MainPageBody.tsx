@@ -5,14 +5,13 @@ import { SERVER_API_KEY } from "../../apiKey";
 import { CanvasImage } from "./CanvasImage";
 import { IntroFeatuer } from "./IntroFeatuer";
 import { MainPageRestaurantGrids } from "./MainPageRestaurantGrids";
-interface Grids {
+export interface Grids {
   name: string;
   review_star: number;
   totalReview: number;
   main_area: string;
   main_pic: string;
-  other_pic_1: string;
-  other_pic_2: string;
+  _id: string;
 }
 export const MainPageBody: React.FC = ({}) => {
   const [grids, setGrids] = useState<Grids[]>([]);
