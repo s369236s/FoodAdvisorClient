@@ -5,6 +5,9 @@
 ```
 $ npm install
 
+or
+
+$ yarn
 ```
 
 編譯
@@ -14,6 +17,11 @@ $ npm run build
 
 $ npm run dev
 
+or
+
+$ yarn build
+
+$ yarn dev
 ```
 
 ToDo
@@ -26,4 +34,6 @@ ToDo
 3. search
 
 4. map
+
+5.  
 ```
