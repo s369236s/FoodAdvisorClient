@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import ReactStar from "react-rating-stars-component";
 import { ReviewRestaurantForm } from "./ReviewRestaurantForm";
 interface Props {}
 
 export const ReviewRestaurantBody: React.FC<Props> = ({}) => {
+  const [review, setReview] = useState("");
   return (
     <div className="review-restaurant-container">
       <div className="review-restaurant-body">
@@ -26,10 +27,11 @@ export const ReviewRestaurantBody: React.FC<Props> = ({}) => {
               emptyIcon={emptyStar}
               halfIcon={halfStar}
               filledIcon={fullStar}
+              onChange={(star: string) => setReview(star)}
             />
           </section>
         </div>
-        <ReviewRestaurantForm />
+        <ReviewRestaurantForm review={review} />
       </div>
     </div>
   );

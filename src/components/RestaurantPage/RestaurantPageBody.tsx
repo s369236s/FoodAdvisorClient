@@ -24,7 +24,7 @@ function useQuery() {
 
 export const RestaurantPageBody: React.FC<Props> = ({}) => {
   let query = useQuery();
-
+  const [id, setId] = useState<any>("");
   const [info, setInfo] = useState<Restaurant>();
   const [star, setStar] = useState(0);
   const [starKeyForce, setStarKeyForce] = useState(0);
@@ -34,7 +34,7 @@ export const RestaurantPageBody: React.FC<Props> = ({}) => {
   }, [info?.review_star]);
 
   useEffect(() => {
-    const id = query.get("id");
+    setId(query.get("id"));
     const fetchData = async () => {
       await axios
         .get(`${SERVER_API_KEY}/restaurant/get_restaurant_page.php?id=${id}`, {
@@ -120,7 +120,7 @@ export const RestaurantPageBody: React.FC<Props> = ({}) => {
           </div>
         </div>
       </div>
-      <RestaurantPageReviews />
+      <RestaurantPageReviews id={id} />
     </div>
   );
 };

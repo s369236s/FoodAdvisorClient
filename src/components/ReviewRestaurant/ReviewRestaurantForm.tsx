@@ -1,20 +1,73 @@
+import axios from "axios";
 import React, { useState } from "react";
 import ReactStar from "react-rating-stars-component";
+import { useLocation } from "react-router";
+import { PulseLoader } from "react-spinners";
+import { SERVER_API_KEY } from "../../apiKey";
+import { getUser } from "../Fetch/getUser";
 import { RegisterRestaurantUpload } from "../RegisterRestaurant/RegisterRestaurantUpload";
-interface Props {}
+interface Props {
+  review: string;
+}
+function useQuery() {
+  return new URLSearchParams(useLocation().search);
+}
+export const ReviewRestaurantForm: React.FC<Props> = ({ review }) => {
+  let query = useQuery();
 
-export const ReviewRestaurantForm: React.FC<Props> = ({}) => {
+  const [isLoading, setIsLoading] = useState(false);
+  const [title, setTitle] = useState("");
+  const [content, setContent] = useState("");
+  const [food, setFood] = useState("");
+  const [speed, setSpeed] = useState("");
+  const [price, setPrice] = useState("");
   const [cropResult, setCropResult] = useState("");
   const [preview, setPreview] = useState("");
+
+  const handleSubmit = () => {
+    const user_id = getUser();
+    console.log(user_id);
+    const id = query.get("id") as any;
+    const formData = new FormData();
+    setIsLoading(true);
+    formData.append("pic", cropResult);
+    formData.append("title", title);
+    formData.append("content", content);
+    formData.append("food", food);
+    formData.append("speed", speed);
+    formData.append("review", review);
+    formData.append("price", price);
+    formData.append("restaurant_id", id);
+    formData.append("user_id", user_id);
+    axios
+      .post(`${SERVER_API_KEY}/restaurant/review_restaurant.php`, formData, {
+        withCredentials: true,
+      })
+      .then((res) => {
+        console.log(res.data);
+        setIsLoading(false);
+        if (res.data.ok) {
+          // history.push("/");
+        }
+      });
+  };
+
   return (
     <div className="review-restaurant-form">
       <section className="review-restaurant-input-container">
         <h5>評論標題</h5>
-        <input type="text" className="review-restaurant-input" />
+        <input
+          type="text"
+          className="review-restaurant-input"
+          onChange={(e) => setTitle(e.target.value)}
+        />
       </section>
       <section className="review-restaurant-input-container">
         <h5>評論內容</h5>
-        <textarea className="review-restaurant-textarea" />
+        <textarea
+          className="review-restaurant-textarea"
+          onChange={(e) => setContent(e.target.value)}
+        />
       </section>
 
       <div className="review-restaurant-other-rating">
@@ -29,6 +82,7 @@ export const ReviewRestaurantForm: React.FC<Props> = ({}) => {
             emptyIcon={emptyStar}
             halfIcon={halfStar}
             filledIcon={fullStar}
+            onChange={(star: string) => setFood(star)}
           />
         </section>
         <section className="review-restaurant-other-rating-star">
@@ -41,6 +95,7 @@ export const ReviewRestaurantForm: React.FC<Props> = ({}) => {
             emptyIcon={emptyStar}
             halfIcon={halfStar}
             filledIcon={fullStar}
+            onChange={(star: string) => setSpeed(star)}
           />
         </section>
         <section className="review-restaurant-other-rating-star">
@@ -53,6 +108,7 @@ export const ReviewRestaurantForm: React.FC<Props> = ({}) => {
             emptyIcon={emptyStar}
             halfIcon={halfStar}
             filledIcon={fullStar}
+            onChange={(star: string) => setPrice(star)}
           />
         </section>
       </div>
@@ -72,8 +128,12 @@ export const ReviewRestaurantForm: React.FC<Props> = ({}) => {
           <ImageChunk />
         )}
       </div>
-      <button className="review-restaurant-button">
-        <p>送出評論</p>
+      <button className="review-restaurant-button" onClick={handleSubmit}>
+        {isLoading ? (
+          <PulseLoader color={"white"} loading={isLoading} size={6} />
+        ) : (
+          <p>送出評論</p>
+        )}
       </button>
     </div>
   );
