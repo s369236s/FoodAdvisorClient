@@ -26,8 +26,6 @@ export const ReviewRestaurantForm: React.FC<Props> = ({ review }) => {
 
   const handleSubmit = () => {
     const user_id = getUser();
-    console.log(user_id);
-    const id = query.get("id") as any;
     const formData = new FormData();
     setIsLoading(true);
     formData.append("pic", cropResult);
@@ -37,7 +35,7 @@ export const ReviewRestaurantForm: React.FC<Props> = ({ review }) => {
     formData.append("speed", speed);
     formData.append("review", review);
     formData.append("price", price);
-    formData.append("restaurant_id", id);
+    formData.append("restaurant_id", query.get("id") as any);
     formData.append("user_id", user_id);
     axios
       .post(`${SERVER_API_KEY}/restaurant/review_restaurant.php`, formData, {

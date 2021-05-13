@@ -4,10 +4,15 @@ import { useHistory } from "react-router-dom";
 import { SERVER_API_KEY } from "../../apiKey";
 import { RegisterRestaurantUpload } from "./RegisterRestaurantUpload";
 import { PulseLoader } from "react-spinners";
-interface Props {}
+import { setAccessToken } from "../Token/accessToken";
+import { RestaurantPageBody } from "../RestaurantPage/RestaurantPageBody";
+interface Props {
+  user_id: string;
+}
 
-export const RegisterRestaurantForm: React.FC<Props> = ({}) => {
+export const RegisterRestaurantForm: React.FC<Props> = ({ user_id }) => {
   const history = useHistory();
+  const [isAuth, SetIsAuth] = useState(false);
   const [cropResult_1, setCropResult_1] = useState("");
   const [cropResult_2, setCropResult_2] = useState("");
   const [cropResult_3, setCropResult_3] = useState("");
@@ -21,6 +26,11 @@ export const RegisterRestaurantForm: React.FC<Props> = ({}) => {
   const handleSubmit = () => {
     const formData = new FormData();
     setIsLoading(true);
+    if (!user_id) {
+      setIsLoading(false);
+      return;
+    }
+    formData.append("user_id", user_id);
     formData.append("main_pic", cropResult_1);
     formData.append("other_pic_1", cropResult_2);
     formData.append("other_pic_2", cropResult_3);

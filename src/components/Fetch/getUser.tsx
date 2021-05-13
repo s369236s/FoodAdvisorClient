@@ -1,10 +1,12 @@
 import axios from "axios";
 import { SERVER_API_KEY } from "../../apiKey";
 
+let user_id = "";
+
+export const setUser = (s: string) => {
+  user_id = s;
+};
+
 export const getUser = () => {
-  let user_id = "";
-  axios
-    .get(`${SERVER_API_KEY}/auth/refresh_token.php`, { withCredentials: true })
-    .then((res) => (user_id = res.data.id));
   return user_id;
 };

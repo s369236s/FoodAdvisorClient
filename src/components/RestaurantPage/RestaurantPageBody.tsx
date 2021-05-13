@@ -17,7 +17,15 @@ interface Restaurant {
   other_pic_1: string;
   other_pic_2: string;
 }
+
+interface Comment {
+  pic: string;
+  title: string;
+  content: string;
+  review_star: number;
+}
 interface Props {}
+
 function useQuery() {
   return new URLSearchParams(useLocation().search);
 }
@@ -27,6 +35,7 @@ export const RestaurantPageBody: React.FC<Props> = ({}) => {
   const [id, setId] = useState<any>("");
   const [info, setInfo] = useState<Restaurant>();
   const [star, setStar] = useState(0);
+  const [comments, setComments] = useState<Comment>();
   const [starKeyForce, setStarKeyForce] = useState(0);
 
   useEffect(() => {
@@ -37,10 +46,16 @@ export const RestaurantPageBody: React.FC<Props> = ({}) => {
     setId(query.get("id"));
     const fetchData = async () => {
       await axios
-        .get(`${SERVER_API_KEY}/restaurant/get_restaurant_page.php?id=${id}`, {
-          withCredentials: true,
-        })
+        .get(
+          `${SERVER_API_KEY}/restaurant/get_restaurant_page.php?id=${query.get(
+            "id"
+          )}`,
+          {
+            withCredentials: true,
+          }
+        )
         .then((res) => {
+          console.log(res.data);
           if (res.data.ok) {
             setInfo(res.data.data);
           }
@@ -50,6 +65,26 @@ export const RestaurantPageBody: React.FC<Props> = ({}) => {
 
     fetchData();
 
+    return () => {};
+  }, []);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      await axios
+        .get(
+          `${SERVER_API_KEY}/restaurant/get_restaurant_review.php?id=${query.get(
+            "id"
+          )}`
+        )
+        .then((res) => {
+          console.log(res.data);
+          if (res.data.ok) {
+            setComments(res.data.data);
+          }
+        })
+        .catch((err) => console.log(err));
+    };
+    fetchData();
     return () => {};
   }, []);
   return (
@@ -120,7 +155,7 @@ export const RestaurantPageBody: React.FC<Props> = ({}) => {
           </div>
         </div>
       </div>
-      <RestaurantPageReviews id={id} />
+      <RestaurantPageReviews id={query.get("id")} />
     </div>
   );
 };

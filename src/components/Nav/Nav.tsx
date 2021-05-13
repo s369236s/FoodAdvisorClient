@@ -9,6 +9,7 @@ import axios from "axios";
 import { SERVER_API_KEY } from "../../apiKey";
 import { setAccessToken } from "../Token/accessToken";
 import { NavUser } from "./User/NavUser";
+import { setUser } from "../Fetch/getUser";
 
 interface Props {}
 
@@ -27,6 +28,7 @@ export const Nav: React.FC<Props> = ({}) => {
         console.log(res.data);
         if (res.data.ok) {
           setIsAuth(true);
+          setUser(res.data._id);
           setAccessToken(res.data.accessToken);
         }
       });
