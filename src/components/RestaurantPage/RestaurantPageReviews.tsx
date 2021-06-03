@@ -4,9 +4,17 @@ import { RestaurantPageUserReview } from "./RestaurantPageUserReview";
 
 interface Props {
   id: any;
+  comments: Comment[];
+}
+interface Comment {
+  pic: string;
+  title: string;
+  content: string;
+  review_star: number;
+  comment_date: string;
 }
 
-export const RestaurantPageReviews: React.FC<Props> = ({ id }) => {
+export const RestaurantPageReviews: React.FC<Props> = ({ comments, id }) => {
   return (
     <div className="restaurant-page-reviews">
       <div className="restaurant-page-header">
@@ -18,7 +26,18 @@ export const RestaurantPageReviews: React.FC<Props> = ({ id }) => {
           <p>發表評論</p>
         </Link>
       </div>
-      <RestaurantPageUserReview />
+      {comments.map((comment, i) => {
+        return (
+          <RestaurantPageUserReview
+            key={i}
+            comment_date={comment.comment_date}
+            title={comment.title}
+            content={comment.content}
+            review_star={comment.review_star}
+            pic={comment.pic}
+          />
+        );
+      })}
     </div>
   );
 };

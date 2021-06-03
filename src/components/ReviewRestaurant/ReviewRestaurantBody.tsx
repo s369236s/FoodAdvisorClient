@@ -1,19 +1,68 @@
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 import ReactStar from "react-rating-stars-component";
-import { getUser, setUser } from "../Fetch/getUser";
+import { useHistory, useLocation } from "react-router-dom";
+import { SERVER_API_KEY } from "../../apiKey";
 import { ReviewRestaurantForm } from "./ReviewRestaurantForm";
 interface Props {}
 
+interface Restaurant {
+  name: string;
+  review_star: string;
+  Introduction: string;
+  address: string;
+  phone_number: string;
+  main_area: string;
+  hours: string;
+  main_pic: string;
+  other_pic_1: string;
+  other_pic_2: string;
+}
+
+function useQuery() {
+  return new URLSearchParams(useLocation().search);
+}
 export const ReviewRestaurantBody: React.FC<Props> = ({}) => {
+  let query = useQuery();
+  let histroy = useHistory();
   const [review, setReview] = useState("");
+  const [info, setInfo] = useState<Restaurant>();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      await axios
+        .get(
+          `${SERVER_API_KEY}/restaurant/get_restaurant_page.php?id=${query.get(
+            "id"
+          )}`,
+          {
+            withCredentials: true,
+          }
+        )
+        .then((res) => {
+          console.log(res.data);
+          if (res.data.ok) {
+            setInfo(res.data.data);
+          } else {
+            histroy.push("/");
+          }
+        })
+        .catch((err) => console.log(err));
+    };
+
+    fetchData();
+
+    return () => {};
+  }, []);
+
   return (
     <div className="review-restaurant-container">
       <div className="review-restaurant-body">
         <div className="review-restaurant-header">
-          <img src="media/user.jpg" alt="" />
+          <img src={`${SERVER_API_KEY}/${info?.main_pic}`} alt="" />
           <section className="review-restaurant-info">
-            <h2>游日銘</h2>
-            <p>張世明的家</p>
+            <h2>{info?.name}</h2>
+            <p>{info?.Introduction}</p>
           </section>
         </div>
         <h2>請填入您的感受</h2>

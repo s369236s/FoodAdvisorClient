@@ -4,8 +4,6 @@ import { useHistory } from "react-router-dom";
 import { SERVER_API_KEY } from "../../apiKey";
 import { RegisterRestaurantUpload } from "./RegisterRestaurantUpload";
 import { PulseLoader } from "react-spinners";
-import { setAccessToken } from "../Token/accessToken";
-import { RestaurantPageBody } from "../RestaurantPage/RestaurantPageBody";
 interface Props {
   user_id: string;
 }
@@ -27,6 +25,7 @@ export const RegisterRestaurantForm: React.FC<Props> = ({ user_id }) => {
     const formData = new FormData();
     setIsLoading(true);
     if (!user_id) {
+      console.log("userid error");
       setIsLoading(false);
       return;
     }

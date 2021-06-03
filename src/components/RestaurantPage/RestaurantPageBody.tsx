@@ -5,9 +5,14 @@ import axios from "axios";
 import { SERVER_API_KEY } from "../../apiKey";
 import { useLocation } from "react-router";
 import { RestaurantPageReviews } from "./RestaurantPageReviews";
+import { useHistory } from "react-router-dom";
+import { RadarChart } from "./RestaurantPageRadarChart";
 interface Restaurant {
   name: string;
   review_star: string;
+  food_star: string;
+  price_star: string;
+  speed_star: string;
   Introduction: string;
   address: string;
   phone_number: string;
@@ -23,6 +28,7 @@ interface Comment {
   title: string;
   content: string;
   review_star: number;
+  comment_date: string;
 }
 interface Props {}
 
@@ -32,16 +38,40 @@ function useQuery() {
 
 export const RestaurantPageBody: React.FC<Props> = ({}) => {
   let query = useQuery();
+  let histroy = useHistory();
+
   const [id, setId] = useState<any>("");
   const [info, setInfo] = useState<Restaurant>();
   const [star, setStar] = useState(0);
-  const [comments, setComments] = useState<Comment>();
+  const [comments, setComments] = useState<Comment[]>([]);
   const [starKeyForce, setStarKeyForce] = useState(0);
 
   useEffect(() => {
     setStarKeyForce((prev) => prev + 1);
   }, [info?.review_star]);
 
+  useEffect(() => {
+    const fetchData = async () => {
+      await axios
+        .get(
+          `${SERVER_API_KEY}/restaurant/get_restaurant_review.php?id=${query.get(
+            "id"
+          )}`
+        )
+        .then((res) => {
+          if (res.data.ok) {
+            console.log(res.data.data);
+            setComments(res.data.data);
+          } else {
+            histroy.push("/");
+          }
+        })
+        .catch((err) => console.log(err));
+    };
+
+    fetchData();
+    return () => {};
+  }, []);
   useEffect(() => {
     setId(query.get("id"));
     const fetchData = async () => {
@@ -55,9 +85,11 @@ export const RestaurantPageBody: React.FC<Props> = ({}) => {
           }
         )
         .then((res) => {
-          console.log(res.data);
+          console.log(res.data.data);
           if (res.data.ok) {
             setInfo(res.data.data);
+          } else {
+            histroy.push("/");
           }
         })
         .catch((err) => console.log(err));
@@ -65,26 +97,6 @@ export const RestaurantPageBody: React.FC<Props> = ({}) => {
 
     fetchData();
 
-    return () => {};
-  }, []);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      await axios
-        .get(
-          `${SERVER_API_KEY}/restaurant/get_restaurant_review.php?id=${query.get(
-            "id"
-          )}`
-        )
-        .then((res) => {
-          console.log(res.data);
-          if (res.data.ok) {
-            setComments(res.data.data);
-          }
-        })
-        .catch((err) => console.log(err));
-    };
-    fetchData();
     return () => {};
   }, []);
   return (
@@ -155,7 +167,14 @@ export const RestaurantPageBody: React.FC<Props> = ({}) => {
           </div>
         </div>
       </div>
-      <RestaurantPageReviews id={query.get("id")} />
+      <div className="restaurant-bottom-review-container">
+        <RadarChart
+          food_star={info?.food_star}
+          price_star={info?.price_star}
+          speed_star={info?.speed_star}
+        />
+        <RestaurantPageReviews id={query.get("id")} comments={comments} />
+      </div>
     </div>
   );
 };

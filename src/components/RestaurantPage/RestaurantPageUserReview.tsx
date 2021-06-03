@@ -1,8 +1,21 @@
 import React from "react";
 import ReactStar from "react-rating-stars-component";
-interface Props {}
+import { SERVER_API_KEY } from "../../apiKey";
+interface Props {
+  pic: string;
+  title: string;
+  content: string;
+  review_star: string;
+  comment_date: string;
+}
 
-export const RestaurantPageUserReview: React.FC<Props> = ({}) => {
+export const RestaurantPageUserReview: React.FC<Props> = ({
+  content,
+  pic,
+  review_star,
+  comment_date,
+  title,
+}) => {
   return (
     <div className="restaurant-page-user-review">
       <div className="restaurant-page-user-review-left">
@@ -14,7 +27,7 @@ export const RestaurantPageUserReview: React.FC<Props> = ({}) => {
           <ReactStar
             edit={false}
             activeColor="#819ad1"
-            value={4}
+            value={parseInt(review_star)}
             count={5}
             size={16}
             isHalf={true}
@@ -22,13 +35,13 @@ export const RestaurantPageUserReview: React.FC<Props> = ({}) => {
             halfIcon={halfStar}
             filledIcon={fullStar}
           />
-          <p>2021/5/7評論</p>
+          <p>{comment_date.replaceAll("-", "/")}</p>
         </div>
-        <h3>張世明我爸</h3>
-        <p>我愛張世明</p>
+        <h3>{title}</h3>
+        <p>{content}</p>
       </section>
       <div className="restaurant-page-user-review-image">
-        <img src="media/user.jpg" alt="" />
+        <img src={`${SERVER_API_KEY}/${pic}`} alt="" />
       </div>
     </div>
   );

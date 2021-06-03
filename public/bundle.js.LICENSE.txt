@@ -5,6 +5,13 @@ object-assign
 */
 
 /*!
+ * Chart.js v3.2.1
+ * https://www.chartjs.org
+ * (c) 2021 Chart.js Contributors
+ * Released under the MIT License
+ */
+
+/*!
  * Cropper.js v1.5.11
  * https://fengyuanchen.github.io/cropperjs
  *
