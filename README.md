@@ -27,13 +27,8 @@ $ yarn dev
 ToDo
 
 ```
-1. comment
+3. fuzzy search
 
-2. chartjs
+4. google map
 
-3. search
-
-4. map
-
-5.  
 ```
