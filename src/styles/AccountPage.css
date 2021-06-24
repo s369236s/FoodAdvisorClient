@@ -1,0 +1,448 @@
+:root {
+  font-family: "微軟正黑體";
+}
+.account-page-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  background-color: #f2f2f2;
+  height: 100%;
+}
+.account-page-container {
+  background-color: #fff;
+  margin-top: 7rem;
+  width: 75%;
+  border-radius: 2px;
+  border: 1px solid #e0e0e0;
+  border-top-color: rgb(224, 224, 224);
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top: 0 solid #e0e0e0;
+
+  display: flex;
+  flex-direction: column;
+}
+.account-page-user-image-container {
+  margin: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60px;
+  height: 60px;
+  /* background-color: #f8f8f8; */
+  border: 1px #f8f8f8 solid;
+  box-shadow: 0 0.2rem 0.4rem rgb(0 0 0 / 9%);
+}
+.account-page-user-image {
+  width: 50px;
+  height: 50px;
+}
+.account-page-user-info-container {
+  display: flex;
+  align-items: center;
+}
+
+.account-page-user-info-container > *:nth-child(2) {
+  flex: 1 1 60%;
+}
+
+.account-page-user-text-info {
+  margin-left: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+.account-page-user-text-info > h5 {
+  font-family: "微軟正黑體";
+  font-size: 1rem;
+  padding: 0;
+  margin: 0.25rem;
+}
+.account-page-user-text-info > p {
+  font-weight: 800;
+  font-size: 0.8rem;
+  margin: 0.25rem;
+  color: #808080;
+}
+.account-page-user-change-dropdown-button-container {
+  z-index: 2;
+  position: relative;
+  margin: 2rem;
+}
+.account-page-user-change-dropdown-button-container > button {
+  font-family: "微軟正黑體";
+  font-weight: bold;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+
+  width: 6rem;
+  border-radius: 4px;
+  height: 1.75rem;
+  background-color: #819ad1;
+  border: none;
+  outline: none;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+.account-page-user-change-dropdown-button-container > button:hover {
+  cursor: pointer;
+  background-color: #778cbb;
+  transition: 0.2s;
+}
+.account-page-user-change-dropdown-button-container > button > svg {
+  margin-top: 2px;
+  font-family: "微軟正黑體";
+  font-weight: bold;
+  color: #ffffff;
+}
+.account-page-user-change-dropdown-button-container > button > .icon-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.account-page-user-change-dropdown-button-container > button > p {
+  font-family: "微軟正黑體";
+  font-weight: bold;
+  color: #ffffff;
+}
+.account-page-user-change-dropdown {
+  border-radius: 4px;
+  width: 100%;
+  position: absolute;
+  background-color: #8299cc;
+  top: 30px;
+}
+.account-page-user-change-dropdown > button {
+  border-radius: 4px;
+  padding: 0.5rem;
+  width: 100%;
+  background-color: #8299cc00;
+  border: none;
+  font-family: "微軟正黑體";
+  font-weight: bold;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.account-page-user-change-dropdown > button:hover {
+  cursor: pointer;
+  background-color: #778cbb;
+  transition: 0.2s;
+}
+
+.account-page-user-detail-container {
+  background-color: #fff;
+  margin-top: 4rem;
+  width: 75%;
+  border-radius: 2px;
+  border: 1px solid #e0e0e0;
+  border-top-color: rgb(224, 224, 224);
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top: 0 solid #e0e0e0;
+  display: flex;
+  flex-direction: column;
+}
+.account-page-user-address-edit-container {
+  display: flex;
+  justify-content: space-between;
+}
+.account-page-user-address-edit-input-container {
+  display: flex;
+  align-items: center;
+}
+.account-page-user-address-edit-input-container > input {
+  width: 25ch;
+  height: 1.25rem;
+  margin-left: 1rem;
+  border-radius: 4px;
+  border: 1px rgb(189, 188, 188) solid;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  color: #666;
+  font-weight: 100;
+  align-self: center;
+
+  font-family: "微軟正黑體";
+}
+.account-page-user-detail-container > div:first-child {
+  justify-content: space-between;
+  display: flex;
+}
+.account-page-user-address-edit-input-container > h5 {
+  font-family: "微軟正黑體";
+  font-size: 1rem;
+  padding: 0;
+  margin-left: 1.5rem;
+}
+.account-page-user-address-edit-button-container {
+  display: flex;
+  margin-right: 1rem;
+}
+.account-page-user-address-edit-button-container > button {
+  margin-left: 1rem;
+  font-family: "微軟正黑體";
+  font-weight: bold;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 6rem;
+  border-radius: 4px;
+  height: 1.75rem;
+  border: none;
+  outline: none;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  align-self: center;
+}
+
+.account-page-user-address-edit-button-container > button:first-child {
+  background-color: #59cd8e;
+}
+
+.account-page-user-address-edit-button-container > button:first-child:hover {
+  cursor: pointer;
+  background-color: #4daf79;
+  transition: 0.2s;
+}
+
+.account-page-user-address-edit-button-container > button:nth-child(2) {
+  background-color: #fa884a;
+}
+
+.account-page-user-address-edit-button-container > button:nth-child(2):hover {
+  cursor: pointer;
+  background-color: #be683a;
+  transition: 0.2s;
+}
+
+.account-page-user-detail-container > div:first-child > button {
+  font-family: "微軟正黑體";
+  font-weight: bold;
+  color: #000000;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 5rem;
+  border-radius: 3px;
+  height: 1.75rem;
+  background-color: #ffffff;
+  border: 2px #000000 solid;
+  outline: none;
+  margin: 1.5rem 1.5rem 1rem 1.5rem;
+}
+.account-page-user-detail-container > div:first-child > button:hover {
+  cursor: pointer;
+  border: 2px #646464 solid;
+  color: #646464;
+  transition: 0.3s;
+}
+.account-page-user-detail-container > div:first-child > h5 {
+  font-family: "微軟正黑體";
+  font-size: 1rem;
+  padding: 0;
+  margin-left: 1.5rem;
+}
+.span-chunk {
+  width: 100%;
+  border-bottom: 1px #dbdbdb solid;
+}
+.account-page-user-detail-container > span {
+  width: 100%;
+  border-bottom: 1px #dbdbdb solid;
+}
+
+.account-page-user-detail-section {
+  display: flex;
+  align-items: center;
+}
+.account-page-user-detail-section-container {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 3rem;
+}
+.account-page-user-detail-section-text {
+  padding-left: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+.account-page-user-detail-section-text > h5 {
+  font-size: 1.2rem;
+  margin: 0.25rem;
+}
+.account-page-user-detail-section-text > p {
+  font-weight: bold;
+  color: grey;
+  font-size: 0.8rem;
+  margin: 0.25rem;
+}
+.account-page-user-detail-section-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f4b72b;
+  width: 60px;
+  height: 60px;
+  border-radius: 100%;
+}
+.account-page-user-detail-section-icon-2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #df3f61;
+  width: 60px;
+  height: 60px;
+  border-radius: 100%;
+}
+.account-page-user-detail-section-icon-2 > svg {
+  fill: white;
+  margin-top: 4px;
+}
+
+.account-page-user-recent-visit-container {
+  min-height: 18rem;
+  background-color: #fff;
+  margin-top: 4rem;
+  width: 75%;
+  border-radius: 2px;
+  border: 1px solid #e0e0e0;
+  border-top-color: rgb(224, 224, 224);
+  border-top-style: solid;
+  border-top-width: 1px;
+
+  padding-bottom: 2rem;
+  border-top: 0 solid #e0e0e0;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2rem;
+}
+
+.account-page-user-recent-visit-container > div:first-child {
+  justify-content: space-between;
+  display: flex;
+}
+
+.account-page-user-recent-visit-container > div > h5 {
+  font-family: "微軟正黑體";
+  font-size: 1rem;
+  padding: 0;
+  margin-left: 1.5rem;
+}
+.account-page-user-recent-visit-container > span {
+  width: 100%;
+  border-bottom: 1px #dbdbdb solid;
+}
+.account-page-user-recent-visit-section-container {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: space-around;
+}
+.account-page-user-recent-visit-gird {
+  color: #000;
+  display: flex;
+  flex-direction: column;
+}
+.account-page-user-recent-visit-gird:hover {
+  cursor: pointer;
+  transition: 0.2s;
+}
+.account-page-user-recent-visit-gird:hover > h5 {
+  text-decoration: underline;
+}
+.account-page-user-recent-visit-gird:hover > img {
+  opacity: 0.8;
+  transition: 0.2s;
+}
+.account-page-user-recent-visit-gird > img {
+  width: 200px;
+  height: 200px;
+}
+.account-page-user-recent-visit-gird > h5 {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  font-family: "微軟正黑體";
+  font-size: 1rem;
+  padding: 0;
+}
+.account-page-user-recent-visit-gird > section {
+  display: flex;
+  align-items: center;
+}
+.account-page-user-recent-visit-gird > section > p {
+  margin-left: 0.3rem;
+  color: #636363;
+}
+.account-area {
+  margin-left: 1rem;
+}
+.account-page-crop-img {
+  display: flex;
+  position: relative;
+  width: 6rem;
+  height: 6rem;
+  border: 1px rgb(199, 199, 199) solid;
+  background-color: #d1d1d1;
+  justify-content: center;
+  margin: 1rem;
+}
+@media only screen and (max-width: 1000px) {
+  .account-page-user-recent-visit-gird > img {
+    width: 150px;
+    height: 150px;
+  }
+}
+@media only screen and (max-width: 800px) {
+  .account-page-user-address-edit-input-container > input {
+    width: 20ch;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .account-page-user-recent-visit-gird > img {
+    width: 200px;
+    height: 200px;
+  }
+  .account-page-user-recent-visit-section-container {
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  .account-page-user-recent-visit-gird:not(.account-page-user-recent-visit-gird:first-child) {
+    margin-top: 1rem;
+  }
+}
+@media only screen and (max-width: 750px) {
+  .account-page-user-address-edit-container {
+    flex-direction: column;
+  }
+  .account-page-user-address-edit-container {
+    align-items: center;
+  }
+  .account-page-user-address-edit-button-container {
+    margin-bottom: 1rem;
+  }
+}
+@media only screen and (max-width: 480px) {
+  .account-page-user-info-container,
+  .account-page-user-detail-section-container {
+    flex-direction: column;
+  }
+  .account-page-user-detail-section {
+    padding: 2rem;
+  }
+  .account-page-user-address-edit-input-container > input {
+    width: 12ch;
+  }
+  .account-page-crop-img {
+    width: 5rem;
+    height: 5rem;
+  }
+  .account-area {
+    margin-left: 0.5rem;
+  }
+  .account-page-user-address-edit-input-container > h5 {
+    margin-left: 0rem;
+  }
+}

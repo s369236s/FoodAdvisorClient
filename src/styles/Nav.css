@@ -24,6 +24,10 @@
   align-items: center;
   color: black;
 }
+.nav-left-container > a > img {
+  width: 51px;
+  height: 46px;
+}
 .nav-left-container > *:not(h1) {
   margin: 0 0 0 1rem;
 }

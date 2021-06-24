@@ -1,0 +1,176 @@
+input::placeholder {
+  font-family: "微軟正黑體";
+}
+
+.register-restaurant-body-1 {
+  background-color: #f2f2f2;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.register-resaurant-container {
+  margin-bottom: 2rem;
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 55%;
+  margin-top: 7rem;
+  background-color: #ffffff;
+  box-shadow: 0 0.2rem 0.4rem rgb(0 0 0 / 9%);
+}
+
+.register-resaurant-container > section {
+  width: 90%;
+  padding: 1rem 0;
+  border-bottom: 1px #f2f2f2 solid;
+}
+.register-resaurant-container > section > * {
+  padding: 0.25rem;
+}
+.register-resaurant-container > section > h1 {
+  font-weight: 100;
+}
+.register-resaurant-container > section > p {
+  font-size: 0.8rem;
+  color: grey;
+}
+
+.restaurant-input-container {
+  margin-left: 1rem;
+  margin-top: 2rem;
+  display: flex;
+  align-items: center;
+}
+
+.restaurant-input-container > p {
+  color: #666;
+}
+.new-register-restaurant-input {
+  width: 44ch;
+  margin-left: 1rem;
+  border-radius: 4px;
+  border: 1px rgb(189, 188, 188) solid;
+  padding: 0.5rem 1rem;
+  font-size: 1.2rem;
+  color: #666;
+  font-weight: 100;
+  font-family: "微軟正黑體";
+}
+.new-register-restaurant-select {
+  width: 44ch;
+  margin-left: 1rem;
+  border-radius: 4px;
+  border: 1px rgb(189, 188, 188) solid;
+  padding: 0.5rem 1rem;
+  font-size: 1.2rem;
+}
+.new-register-restaurant-input::placeholder {
+  font-size: 1rem;
+}
+.restaurant-input-group {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+select:focus {
+  outline: none;
+}
+.new-register-restuarant-form {
+  display: flex;
+  flex-direction: column;
+}
+.restaurant-input-upload-image-container {
+  margin-top: 2rem;
+}
+.restaurant-input-upload-image-container > p {
+  align-self: flex-start;
+}
+.register-restaurant-crop-upload-container {
+  display: flex;
+}
+.register-restaurant-crop-img-container {
+  margin-top: 0;
+}
+.register-restaurant-upload-input-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0 1rem 0 1rem;
+}
+.new-button {
+  margin-top: 2rem;
+}
+.new-register-restaurant-textarea {
+  width: 44ch;
+  margin-left: 1rem;
+  border-radius: 4px;
+  border: 1px rgb(189, 188, 188) solid;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  color: #666;
+  font-weight: 100;
+  font-family: "微軟正黑體";
+  resize: none;
+}
+@media only screen and (max-width: 1660px) {
+  .register-restaurant-crop-img {
+    width: 6rem;
+    height: 6rem;
+  }
+}
+@media only screen and (max-width: 1234px) {
+  .register-restaurant-crop-img {
+    width: 80px;
+    height: 80px;
+  }
+  .register-restaurant-crop-upload-container {
+    flex-direction: column;
+  }
+  .register-restaurant-crop-img-container {
+    margin-top: 1rem;
+  }
+}
+@media only screen and (max-width: 1100px) {
+  .new-register-restaurant-input {
+    width: 30ch;
+  }
+  .new-register-restaurant-select {
+    width: 30ch;
+  }
+  .new-register-restaurant-textarea {
+    width: 30ch;
+  }
+}
+@media only screen and (max-width: 820px) {
+  .restaurant-input-container {
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: 0;
+  }
+  .new-register-restaurant-input,
+  .new-register-restaurant-textarea {
+    margin-left: 0;
+  }
+  .register-resaurant-container {
+    width: 70%;
+  }
+}
+@media only screen and (max-width: 660px) {
+  .new-register-restaurant-input {
+    width: 90%;
+  }
+  .new-register-restaurant-select {
+    width: 90%;
+  }
+  .register-resaurant-container {
+    width: 90%;
+  }
+}
+@media only screen and (max-width: 550px) {
+}

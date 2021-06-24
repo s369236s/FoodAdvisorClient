@@ -9,6 +9,7 @@ export interface Grids {
   address: string;
   main_pic: string;
   _id: string;
+  total: string;
 }
 function useQuery() {
   return new URLSearchParams(useLocation().search);
@@ -47,6 +48,7 @@ export const FoundRestaurants: React.FC = () => {
       <h3>找到的餐廳</h3>
       {grids.map((resaurant, i) => (
         <FoundRestaurant
+          total={resaurant.total}
           key={i}
           _id={resaurant._id}
           name={resaurant.name}

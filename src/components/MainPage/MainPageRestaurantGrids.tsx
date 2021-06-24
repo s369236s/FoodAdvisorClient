@@ -16,6 +16,7 @@ export const MainPageRestaurantGrids: React.FC<Props> = ({ grids }) => {
           totalReview={100}
           main_area={grid.main_area}
           main_pic={grid.main_pic}
+          total={grid.total}
         />
       ))}
     </div>

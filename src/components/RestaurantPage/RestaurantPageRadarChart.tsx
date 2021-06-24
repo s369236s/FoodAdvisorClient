@@ -49,7 +49,7 @@ export const RadarChart: React.FC<Props> = ({
   price_star,
   food_star,
 }) => (
-  <div className="chart-container">
+  <div className="chart-container restaurant-page-box">
     <Radar
       type="radar"
       data={{

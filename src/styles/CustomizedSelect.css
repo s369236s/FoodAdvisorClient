@@ -1,0 +1,101 @@
+.foodadvisor-select {
+  position: relative;
+  width: 100%;
+  border-radius: 4px;
+  border: 1px rgb(189, 188, 188) solid;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: 0.5s;
+}
+.foodadvisor-select:hover {
+  cursor: pointer;
+}
+.foodadvisor-input-layer {
+  width: 44ch;
+}
+.foodadvisor-select-container {
+  width: 44ch;
+  position: relative;
+  margin-left: 1rem;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.foodadvisor-select-dropdown {
+  padding-bottom: 0.5rem;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  width: 100%;
+  max-height: 20rem;
+  background-color: #ffffff;
+  top: 50px;
+  left: 0;
+  border-radius: 4px;
+  box-shadow: 0 0 16px 0 rgb(0 0 0 / 10%), 0 8px 16px 0 rgb(0 0 0 / 6%);
+  overflow-y: scroll;
+}
+
+.foodadvisor-select-dropdown-search {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  width: 90%;
+  padding: 1rem;
+}
+.foodadvisor-select-dropdown-search > svg {
+  position: absolute;
+  top: 50%;
+  left: 27px;
+  transform: translate(0, -50%);
+}
+
+.foodadvisor-select-input {
+  width: 90%;
+  border-radius: 4px;
+  border: 1px rgb(212, 212, 212) solid;
+  padding: 0.5rem 2rem;
+  font-size: 1rem;
+}
+.foodadvisor-select-input::placeholder {
+  font-size: 1rem;
+}
+.foodadvisor-option {
+  width: calc(100% - 4rem);
+  font-size: 1rem;
+  align-self: flex-start;
+  padding: 0.5rem 2rem;
+}
+.foodadvisor-option:hover {
+  cursor: pointer;
+  background-color: #e4e4e4;
+  transition: opacity 0.2s;
+}
+
+.foodadvisor-option-selected {
+  background-color: #e4e4e4;
+}
+
+@media only screen and (max-width: 1100px) {
+  .foodadvisor-select-container {
+    width: 30ch;
+  }
+}
+@media only screen and (max-width: 820px) {
+  .foodadvisor-select-container {
+    width: 18ch;
+    margin-left: 0;
+  }
+}
+@media only screen and (max-width: 660px) {
+  .foodadvisor-select-container {
+    width: 90%;
+  }
+}

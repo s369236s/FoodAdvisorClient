@@ -8,6 +8,7 @@ interface Props {
   review_star: number;
   address: string;
   main_pic: string;
+  total: string;
   _id: string;
 }
 export const FoundRestaurant: React.FC<Props> = ({
@@ -16,6 +17,7 @@ export const FoundRestaurant: React.FC<Props> = ({
   _id,
   address,
   main_pic,
+  total,
 }) => {
   return (
     <Link className="found-restaurant-container" to={`/Restaurant?id=${_id}`}>
@@ -27,7 +29,10 @@ export const FoundRestaurant: React.FC<Props> = ({
       <section className="found-restaurant-info">
         <h2 className="found-restaurant-name">{name}</h2>
         <p className="found-restaurant-location">{address}</p>
-        <div className="found-restaurant-review-star">
+        <div
+          className="found-restaurant-review-star"
+          style={{ display: "flex", alignItems: "center" }}
+        >
           <ReactStars
             edit={false}
             activeColor="#819ad1"
@@ -39,7 +44,10 @@ export const FoundRestaurant: React.FC<Props> = ({
             halfIcon={halfStar}
             filledIcon={fullStar}
           />
+          <p style={{ marginLeft: "8px", color: "grey" }}>{review_star} 分</p>
         </div>
+        <p className="found-restaurant-total">{total}則評論</p>
+        <p>點擊進入餐廳頁面</p>
       </section>
     </Link>
   );

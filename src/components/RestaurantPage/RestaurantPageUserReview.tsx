@@ -1,12 +1,25 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import ReactStar from "react-rating-stars-component";
+import { useHistory } from "react-router-dom";
+import { io, Socket } from "socket.io-client";
 import { SERVER_API_KEY } from "../../apiKey";
+import {
+  HandThumbsDown,
+  HandThumbsDownFill,
+  HandThumbsUp,
+  HandThumbsUpFill,
+} from "../../Svg";
 interface Props {
   pic: string;
   title: string;
   content: string;
   review_star: string;
   comment_date: string;
+  username: string;
+  user_pic: string;
+  user_id: string;
+  _id: string;
 }
 
 export const RestaurantPageUserReview: React.FC<Props> = ({
@@ -15,19 +28,64 @@ export const RestaurantPageUserReview: React.FC<Props> = ({
   review_star,
   comment_date,
   title,
+  username,
+  user_pic,
+  user_id,
+  _id,
 }) => {
+  let histroy = useHistory();
+
+  const [isLike, setIsLike] = useState(false);
+  const [isUnlike, setIsUnlike] = useState(false);
+
   return (
     <div className="restaurant-page-user-review">
       <div className="restaurant-page-user-review-left">
-        <img src="media/user.jpg" alt="" />
-        <p>游日銘</p>
+        <div className="restaurant-page-user-review-left-link">
+          <img
+            src={user_pic ? `${SERVER_API_KEY}/${user_pic}` : "media/user.jpg"}
+            alt=""
+            onClick={() => {
+              histroy.push(`account?user_id=${user_id}`);
+              window.scrollTo(0, 0);
+            }}
+          />
+          <p
+            onClick={() => {
+              histroy.push(`account?user_id=${user_id}`);
+              window.scrollTo(0, 0);
+            }}
+          >
+            {username}
+          </p>
+        </div>
+        <div className="restaurant-page-user-review-left-like-or-unlike">
+          <div className="restaurant-page-user-review-like ">
+            <div
+              onMouseEnter={() => setIsLike(true)}
+              onMouseLeave={() => setIsLike(false)}
+            >
+              <>{isLike ? <HandThumbsUpFill /> : <HandThumbsUp />}</>
+            </div>
+            <h5>0</h5>
+          </div>
+          <div className="restaurant-page-user-review-unlike">
+            <div
+              onMouseEnter={() => setIsUnlike(true)}
+              onMouseLeave={() => setIsUnlike(false)}
+            >
+              <>{isUnlike ? <HandThumbsDownFill /> : <HandThumbsDown />}</>
+            </div>
+            <h5>0</h5>
+          </div>
+        </div>
       </div>
       <section className="restaurant-page-user-review-right">
         <div className="restaurant-page-user-review-star">
           <ReactStar
             edit={false}
             activeColor="#819ad1"
-            value={parseInt(review_star)}
+            value={parseFloat(review_star)}
             count={5}
             size={16}
             isHalf={true}

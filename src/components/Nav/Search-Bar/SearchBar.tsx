@@ -4,6 +4,12 @@ import { useHistory } from "react-router-dom";
 export const SearchBar: React.FC = ({}) => {
   let histroy = useHistory();
   const [value, setValue] = useState("");
+  const keyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      histroy.push(`/UserReview?name_query=${value}`);
+      window.location.reload();
+    }
+  };
   return (
     <div className="nav-search-bar">
       <svg
@@ -26,6 +32,7 @@ export const SearchBar: React.FC = ({}) => {
         ></path>
       </svg>
       <input
+        onKeyDown={keyDown}
         className="nav-search"
         type="text"
         onChange={(e) => setValue(e.target.value)}

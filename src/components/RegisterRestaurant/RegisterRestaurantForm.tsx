@@ -46,7 +46,7 @@ export const RegisterRestaurantForm: React.FC<Props> = ({ user_id }) => {
         console.log(res.data);
         setIsLoading(false);
         if (res.data.ok) {
-          // history.push("/");
+          history.push("/");
         }
       });
   };

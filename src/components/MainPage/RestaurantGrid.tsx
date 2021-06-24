@@ -12,6 +12,7 @@ interface Props {
   main_area: string;
   main_pic: string;
   _id: string;
+  total: string;
 }
 export const RestaurantGrid: React.FC<Props> = ({
   name,
@@ -20,6 +21,7 @@ export const RestaurantGrid: React.FC<Props> = ({
   totalReview,
   main_pic,
   _id,
+  total,
 }) => {
   return (
     <Link className="restaurant-grid" to={`/Restaurant?id=${_id}`}>
@@ -41,7 +43,9 @@ export const RestaurantGrid: React.FC<Props> = ({
             halfIcon={halfStar}
             filledIcon={fullStar}
           />
-          <p>{totalReview}則評論</p>
+          <p style={{ marginLeft: "4px", color: "grey" }}>{review_star}分</p>
+
+          <p style={{ marginLeft: "4px" }}>{total}則評論</p>
         </div>
         <p>{main_area}</p>
       </article>

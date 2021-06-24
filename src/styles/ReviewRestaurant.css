@@ -15,6 +15,7 @@
 }
 
 .review-restaurant-container {
+  background-color: #f2f2f2;
   width: 100%;
 }
 
@@ -22,6 +23,8 @@
   width: 70%;
   padding: 2rem;
   box-shadow: 0 0 4px grey;
+  padding-left: 4rem;
+  background-color: #ffffff;
 }
 
 .review-restaurant-header {
@@ -35,6 +38,9 @@
   flex-direction: column;
   align-self: center;
   margin-left: 2rem;
+}
+.review-restaurant-info > p {
+  color: grey;
 }
 
 .review-restaurant-header > img {
@@ -131,8 +137,13 @@
   > .register-restaurant-upload-input-container {
   padding: 0.25rem;
 }
-
-@media only screen and (max-width: 400px) {
+@media only screen and (max-width: 480px) {
+  .review-restaurant-container {
+    background-color: #ffffff;
+  }
+  .review-restaurant-body {
+    padding-left: 2rem;
+  }
   .review-restaurant-other-rating-star > *:nth-child(2) {
     margin-left: 2rem;
   }

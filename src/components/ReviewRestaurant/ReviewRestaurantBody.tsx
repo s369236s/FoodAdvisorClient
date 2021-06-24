@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import ReactStar from "react-rating-stars-component";
 import { useHistory, useLocation } from "react-router-dom";
 import { SERVER_API_KEY } from "../../apiKey";
+import { setAccessToken } from "../Token/accessToken";
 import { ReviewRestaurantForm } from "./ReviewRestaurantForm";
 interface Props {}
 
@@ -27,10 +28,29 @@ export const ReviewRestaurantBody: React.FC<Props> = ({}) => {
   let histroy = useHistory();
   const [review, setReview] = useState("");
   const [info, setInfo] = useState<Restaurant>();
+  useEffect(() => {
+    const refreshToken = localStorage.getItem("jid");
+    axios
+      .post(
+        `${SERVER_API_KEY}/auth/refresh_token.php`,
+        { refreshToken },
+        { withCredentials: true }
+      )
+      .then((res) => {
+        if (res.data.ok) {
+          setAccessToken(res.data.accessToken);
+        } else {
+          histroy.push("/");
+        }
+      });
+    return () => {
+      setReview("");
+    };
+  }, []);
 
   useEffect(() => {
-    const fetchData = async () => {
-      await axios
+    const fetchData = () => {
+      axios
         .get(
           `${SERVER_API_KEY}/restaurant/get_restaurant_page.php?id=${query.get(
             "id"
@@ -40,7 +60,6 @@ export const ReviewRestaurantBody: React.FC<Props> = ({}) => {
           }
         )
         .then((res) => {
-          console.log(res.data);
           if (res.data.ok) {
             setInfo(res.data.data);
           } else {
@@ -52,7 +71,9 @@ export const ReviewRestaurantBody: React.FC<Props> = ({}) => {
 
     fetchData();
 
-    return () => {};
+    return () => {
+      console.log("clean");
+    };
   }, []);
 
   return (

@@ -7,6 +7,8 @@ import { useLocation } from "react-router";
 import { RestaurantPageReviews } from "./RestaurantPageReviews";
 import { useHistory } from "react-router-dom";
 import { RadarChart } from "./RestaurantPageRadarChart";
+import FsLightbox from "fslightbox-react";
+import { RestaurantPageMap } from "./RestaurantPageMap";
 interface Restaurant {
   name: string;
   review_star: string;
@@ -18,17 +20,25 @@ interface Restaurant {
   phone_number: string;
   main_area: string;
   hours: string;
+  food_type: string;
   main_pic: string;
   other_pic_1: string;
   other_pic_2: string;
+  lat: string;
+  lng: string;
+  comments_count: string;
 }
 
 interface Comment {
+  user_pic: string;
   pic: string;
   title: string;
   content: string;
-  review_star: number;
+  review_star: string;
   comment_date: string;
+  username: string;
+  user_id: string;
+  _id: string;
 }
 interface Props {}
 
@@ -42,10 +52,10 @@ export const RestaurantPageBody: React.FC<Props> = ({}) => {
 
   const [id, setId] = useState<any>("");
   const [info, setInfo] = useState<Restaurant>();
-  const [star, setStar] = useState(0);
   const [comments, setComments] = useState<Comment[]>([]);
   const [starKeyForce, setStarKeyForce] = useState(0);
-
+  const [toggler, setToggler] = useState(false);
+  const [productIndex, setProductIndex] = useState(0);
   useEffect(() => {
     setStarKeyForce((prev) => prev + 1);
   }, [info?.review_star]);
@@ -59,11 +69,11 @@ export const RestaurantPageBody: React.FC<Props> = ({}) => {
           )}`
         )
         .then((res) => {
+          console.log(res.data);
+
           if (res.data.ok) {
             console.log(res.data.data);
             setComments(res.data.data);
-          } else {
-            histroy.push("/");
           }
         })
         .catch((err) => console.log(err));
@@ -85,10 +95,12 @@ export const RestaurantPageBody: React.FC<Props> = ({}) => {
           }
         )
         .then((res) => {
-          console.log(res.data.data);
           if (res.data.ok) {
+            console.log(res.data);
             setInfo(res.data.data);
           } else {
+            console.log(res.data);
+
             histroy.push("/");
           }
         })
@@ -99,6 +111,17 @@ export const RestaurantPageBody: React.FC<Props> = ({}) => {
 
     return () => {};
   }, []);
+  const [lightboxController, setLightboxController] = useState({
+    toggler: false,
+    slide: 1,
+  });
+
+  function openLightboxOnSlide(number: number) {
+    setLightboxController({
+      toggler: !lightboxController.toggler,
+      slide: number,
+    });
+  }
   return (
     <div className="restaurant-page-body-containter">
       <div className="restaurant-page-body-info">
@@ -116,63 +139,115 @@ export const RestaurantPageBody: React.FC<Props> = ({}) => {
             filledIcon={fullStar}
             key={starKeyForce}
           />
-          <h4 className="restaurant-page-body-info-total-review">100則評論</h4>
+          <p style={{ marginLeft: "8px", color: "grey" }}>
+            {info?.review_star}分
+          </p>
+          <h4 className="restaurant-page-body-info-total-review">
+            {info?.comments_count}則評論
+          </h4>
         </section>
         <section className="restaurant-page-body-info-location">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="16"
-            height="16"
-            viewBox="0 0 24 24"
-          >
-            <path d="M12 0c-4.198 0-8 3.403-8 7.602 0 4.198 3.469 9.21 8 16.398 4.531-7.188 8-12.2 8-16.398 0-4.199-3.801-7.602-8-7.602zm0 11c-1.657 0-3-1.343-3-3s1.343-3 3-3 3 1.343 3 3-1.343 3-3 3z" />
-          </svg>
-          <p>{info?.address}</p>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="16"
-            height="16"
-            fill="currentColor"
-            viewBox="0 0 16 16"
-          >
-            <path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.568 17.568 0 0 0 4.168 6.608 17.569 17.569 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.678.678 0 0 0-.58-.122l-2.19.547a1.745 1.745 0 0 1-1.657-.459L5.482 8.062a1.745 1.745 0 0 1-.46-1.657l.548-2.19a.678.678 0 0 0-.122-.58L3.654 1.328zM1.884.511a1.745 1.745 0 0 1 2.612.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511zm10.762.135a.5.5 0 0 1 .708 0l2.5 2.5a.5.5 0 0 1 0 .708l-2.5 2.5a.5.5 0 0 1-.708-.708L14.293 4H9.5a.5.5 0 0 1 0-1h4.793l-1.647-1.646a.5.5 0 0 1 0-.708z" />
-          </svg>
-          <p>{info?.phone_number}</p>
+          <div className="restaurant-page-body-info-icon-container">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+            >
+              <path d="M12 0c-4.198 0-8 3.403-8 7.602 0 4.198 3.469 9.21 8 16.398 4.531-7.188 8-12.2 8-16.398 0-4.199-3.801-7.602-8-7.602zm0 11c-1.657 0-3-1.343-3-3s1.343-3 3-3 3 1.343 3 3-1.343 3-3 3z" />
+            </svg>
+            <p>{info?.address}</p>
+          </div>
+          <div className="restaurant-page-body-info-icon-container order-2">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              viewBox="0 0 16 16"
+              className="foo-1"
+            >
+              <path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.568 17.568 0 0 0 4.168 6.608 17.569 17.569 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.678.678 0 0 0-.58-.122l-2.19.547a1.745 1.745 0 0 1-1.657-.459L5.482 8.062a1.745 1.745 0 0 1-.46-1.657l.548-2.19a.678.678 0 0 0-.122-.58L3.654 1.328zM1.884.511a1.745 1.745 0 0 1 2.612.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511zm10.762.135a.5.5 0 0 1 .708 0l2.5 2.5a.5.5 0 0 1 0 .708l-2.5 2.5a.5.5 0 0 1-.708-.708L14.293 4H9.5a.5.5 0 0 1 0-1h4.793l-1.647-1.646a.5.5 0 0 1 0-.708z" />
+            </svg>
+            <p>{info?.phone_number}</p>
+          </div>
         </section>
       </div>
 
       <div className="restaurant-page-body-main-container">
-        <section className="restaurant-page-body-intro-container">
-          <p>{info?.Introduction}</p>
+        <section className="restaurant-page-body-intro-container restaurant-page-box">
+          <h5>詳細資料</h5>
+          <div className="restaurant-page-body-intro-sub">
+            <h5>種類</h5>
+            <p>{info?.food_type}</p>
+          </div>
+          <div className="restaurant-page-body-intro-sub">
+            <h5>供餐時段</h5>
+            <p>{info?.hours}</p>
+          </div>
+          <div className="restaurant-page-body-intro-sub">
+            <h5>介紹</h5>
+            <p>{info?.Introduction}</p>
+          </div>
         </section>
-        <div className="restaurant-page-body-image-container">
+        <div className="restaurant-page-body-image-container restaurant-page-box">
           <div className="restaurant-page-body-main-image-container">
+            <p>餐廳圖片</p>
+
             <img
               src={`${SERVER_API_KEY}/${info?.main_pic}`}
+              onClick={() => {
+                openLightboxOnSlide(1);
+              }}
               alt=""
               className="restaurant-page-body-img"
             />
           </div>
-          <div className="restaurant-page-body-second-image-container">
+          <div className="restaurant-page-body-second-image-container ">
             <img
               src={`${SERVER_API_KEY}/${info?.other_pic_1}`}
+              onClick={() => {
+                openLightboxOnSlide(2);
+              }}
               alt=""
               className="restaurant-page-body-img"
             />
             <img
               src={`${SERVER_API_KEY}/${info?.other_pic_2}`}
+              onClick={() => {
+                openLightboxOnSlide(3);
+              }}
               alt=""
               className="restaurant-page-body-img"
             />
           </div>
+          <FsLightbox
+            toggler={lightboxController.toggler}
+            sources={[
+              `${SERVER_API_KEY}/${info?.main_pic}`,
+              `${SERVER_API_KEY}/${info?.other_pic_1}`,
+              `${SERVER_API_KEY}/${info?.other_pic_2}`,
+            ]}
+            slide={lightboxController.slide}
+          />
         </div>
       </div>
       <div className="restaurant-bottom-review-container">
-        <RadarChart
-          food_star={info?.food_star}
-          price_star={info?.price_star}
-          speed_star={info?.speed_star}
-        />
+        <div className="restaurant-radar-map-container">
+          <RadarChart
+            food_star={info?.food_star}
+            price_star={info?.price_star}
+            speed_star={info?.speed_star}
+          />
+          <RestaurantPageMap
+            lat={parseFloat(info?.lat as string)}
+            lng={parseFloat(info?.lng as string)}
+            address={info?.address as string}
+            name={info?.name as string}
+            review_star={info?.review_star as string}
+          />
+        </div>
+
         <RestaurantPageReviews id={query.get("id")} comments={comments} />
       </div>
     </div>

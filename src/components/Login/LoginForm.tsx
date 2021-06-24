@@ -39,6 +39,7 @@ export const LoginForm: React.FC<Props> = ({ switchSubmit, closePopup }) => {
       window.location.reload();
       if (res && res.data) {
         setAccessToken(res.data.accessToken);
+        localStorage.setItem("jid", res.data.refreshToken);
       }
       closePopup();
     }

@@ -11,6 +11,7 @@ export interface Grids {
   totalReview: number;
   main_area: string;
   main_pic: string;
+  total: string;
   _id: string;
 }
 export const MainPageBody: React.FC = ({}) => {

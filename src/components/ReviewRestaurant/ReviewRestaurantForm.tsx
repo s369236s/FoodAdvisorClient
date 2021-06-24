@@ -1,11 +1,13 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ReactStar from "react-rating-stars-component";
 import { useLocation } from "react-router";
+import { useHistory } from "react-router-dom";
 import { PulseLoader } from "react-spinners";
 import { SERVER_API_KEY } from "../../apiKey";
 import { getUser } from "../Fetch/getUser";
 import { RegisterRestaurantUpload } from "../RegisterRestaurant/RegisterRestaurantUpload";
+import { setAccessToken } from "../Token/accessToken";
 interface Props {
   review: string;
 }
@@ -14,6 +16,7 @@ function useQuery() {
 }
 export const ReviewRestaurantForm: React.FC<Props> = ({ review }) => {
   let query = useQuery();
+  const history = useHistory();
 
   const [isLoading, setIsLoading] = useState(false);
   const [title, setTitle] = useState("");
@@ -45,7 +48,7 @@ export const ReviewRestaurantForm: React.FC<Props> = ({ review }) => {
         console.log(res.data);
         setIsLoading(false);
         if (res.data.ok) {
-          // history.push("/");
+          history.push(`/Restaurant?id=${query.get("id")}`);
         }
       });
   };

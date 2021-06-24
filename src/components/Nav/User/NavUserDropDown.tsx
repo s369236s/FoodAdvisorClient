@@ -1,7 +1,9 @@
 import axios from "axios";
 import React, { useEffect, useRef } from "react";
+import { useHistory } from "react-router";
 import { SERVER_API_KEY } from "../../../apiKey";
-import { BookMarkPlus, Login, Person, Plus } from "../../../Svg";
+import { BookMarkPlus, Login, Person, Plus, SearchIcon } from "../../../Svg";
+import { getUser } from "../../Fetch/getUser";
 import { setAccessToken } from "../../Token/accessToken";
 import { DropLink } from "../DropDown/DropLink";
 interface Props {
@@ -15,6 +17,7 @@ export const NavUserDropDown: React.FC<Props> = ({
   setToggle,
   toggle,
 }) => {
+  let history = useHistory();
   const dropdownRef = useRef(null) as any;
   useEffect(() => {
     const pageClickEvent = (e: Event) => {
@@ -41,12 +44,20 @@ export const NavUserDropDown: React.FC<Props> = ({
       .post(`${SERVER_API_KEY}/user/logout.php`, {}, { withCredentials: true })
       .then((res) => {
         if (res.data.ok) {
+          localStorage.removeItem("jid");
           window.location.reload();
         } else {
+          localStorage.removeItem("jid");
+          window.location.reload();
           console.log("you are not logged in");
         }
         setAccessToken("");
       });
+  };
+
+  const refreshHandler = () => {
+    history.push(`/account?user_id=${getUser()}`);
+    window.location.reload();
   };
 
   useEffect(() => {
@@ -64,7 +75,7 @@ export const NavUserDropDown: React.FC<Props> = ({
             text="評論"
             toLink="/UserReview"
             needPopup={false}
-            children={Plus}
+            children={SearchIcon}
           />
         ) : (
           <></>
@@ -77,9 +88,9 @@ export const NavUserDropDown: React.FC<Props> = ({
           children={BookMarkPlus}
         />
         <DropLink
-          isLink={true}
-          toLink="/account"
+          isLink={false}
           text="帳戶"
+          action={refreshHandler}
           needPopup={false}
           children={Person}
         />
